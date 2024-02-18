@@ -72,6 +72,7 @@ export default function Home() {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then((stream) => {
                     webcam.srcObject = stream;
+                    let {width, height} = stream.getTracks()[0].getSettings();
                     processStream()
                 })
                 .catch((error) => {
@@ -83,11 +84,12 @@ export default function Home() {
     }, []);
 
     function processStream () {
+        if (!ws) { return; }
         var canvas = document.getElementById('canvas');
         var video = document.getElementById('webcam');
-        canvas.width = 360;
-        canvas.height = 240
-        canvas.getContext('2d').drawImage(video, 0, 0, 360, 240);
+        canvas.width = 640;
+        canvas.height = 360
+        canvas.getContext('2d').drawImage(video, 0, 0, 640, 360);
         let resultb64 = canvas.toDataURL();
         ws.send(JSON.stringify({video: resultb64}));
     }
@@ -104,9 +106,9 @@ export default function Home() {
         <div className={styles.container}>
             {clientId && <p>Client ID: {clientId}</p>} {/* Display client ID if available */}
 
-            <video style={{display: "none"}} id='webcam' width={360} height={240} autoPlay/>
-            <canvas  id='canvas' width={360} height={240} />
-            {record && <img alt='' fetchPriority='high' src={`${incomingVideoData}`} width={360} height={240}/>}
+            <video style={{display: "none"}} id='webcam' width={640} height={360} autoPlay/>
+            <canvas  id='canvas' width={640} height={360} />
+            {record && <img alt='' fetchPriority='high' src={`${incomingVideoData}`} width={640} height={360}/>}
 
             <ul className={styles.messageContainer}>
                 {messages.filter((m) => {

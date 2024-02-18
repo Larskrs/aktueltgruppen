@@ -16,7 +16,7 @@ wss.on('connection', (ws) => {
         // console.log(`Received from client ${clientId}:`, message.toString());
         if (parsedMessage.video) {
             requests++
-            console.log(`Received video from client ${clientId} ${requests}`);
+            // console.log(`Received video from client ${clientId} ${requests}`);
             
         } else if (parsedMessage.text) {
             console.log(`Received text from client ${clientId}`)
