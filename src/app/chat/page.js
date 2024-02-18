@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import { useState, useEffect } from 'react';
 import styles from "./page.module.css";
@@ -105,7 +106,7 @@ export default function Home() {
 
             <video style={{display: "none"}} id='webcam' width={360} height={240} autoPlay/>
             <canvas  id='canvas' width={360} height={240} />
-            {record && <img fetchPriority='high' src={`${incomingVideoData}`} width={360} height={240}/>}
+            {record && <img alt='' fetchPriority='high' src={`${incomingVideoData}`} width={360} height={240}/>}
 
             <ul className={styles.messageContainer}>
                 {messages.filter((m) => {
