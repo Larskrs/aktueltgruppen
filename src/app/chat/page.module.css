@@ -1,0 +1,76 @@
+.container {
+    background-color: rgb(15, 12, 18);
+    width: 100vw;
+    min-height: 100vh;
+    padding: 4rem;
+}
+.messageContainer {
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+.container img, .container canvas {
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
+@keyframes pop_in {
+    0% {
+        scale: 0;
+        opacity: 0;
+    }
+    100% {
+        scale: 1;
+        opacity: 1;
+    }
+}
+.message {
+    background-color: #212;
+    border-radius: 8px;
+    padding: 1rem;
+    width: fit-content;
+    position: relative;
+    animation: pop_in 250ms cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+
+    opacity: 0;
+}
+.message span {
+    left: 0;
+    top: 0;
+    width: fit-content;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-weight: 500;
+    translate:
+        -50%
+        -50%
+    ;
+
+    background-color: #fbda46;
+    background-color: #fb4646;
+    padding: 4px;
+    border-radius: 8px;
+    color: black;
+}
+
+.input {
+    display: flex;
+    gap: 8px;
+    bottom: 16px;
+    position: fixed;
+    left: 16px;
+    right: 16px;
+}
+.messageInput {
+    width: 100%;
+}
+.input * {
+    background-color: rgb(42, 42, 42);
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+}
