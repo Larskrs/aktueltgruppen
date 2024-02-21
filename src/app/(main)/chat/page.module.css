@@ -1,5 +1,5 @@
 .container {
-    background-color: rgb(15, 12, 18);
+    background-color: var(--background);
     width: 100vw;
     min-height: 100vh;
     padding: 4rem;

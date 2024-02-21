@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 import { v1 } from 'uuid';
 
+let clients = 0; 
 const wss = new WebSocket.Server({ port: 3001 });
 let requests = 0;
 
@@ -8,8 +9,14 @@ wss.on('connection', (ws) => {
     const clientId = v1();
     console.log(`Client ${clientId} connected`);
 
+    
+
     // Send client ID to the new client
     ws.send(JSON.stringify({changeClientId: clientId}));
+
+    wss.clients.forEach((client) => {
+        client.send(JSON.stringify({clients: wss.clients.size}));
+    });
 
     ws.on('message', (message) => {
         const parsedMessage = JSON.parse(message.toString());
@@ -32,6 +39,9 @@ wss.on('connection', (ws) => {
 
     ws.on('close', () => {
         console.log(`Client ${clientId} disconnected`);
+        wss.clients.forEach((client) => {
+            client.send(JSON.stringify({clients: wss.clients.size}));
+        });
     });
 });
 
