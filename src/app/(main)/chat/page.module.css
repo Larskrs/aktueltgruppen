@@ -1,15 +1,18 @@
 .container {
-    background-color: var(--background);
     width: 100vw;
     min-height: 100vh;
-    padding: 4rem;
+    padding: 1rem;
+    background-color: var(--midnight-background);
 }
 .messageContainer {
-    padding: 2rem;
+    padding: 2rem 0px;
+    margin-bottom: 2rem;
     border-radius: 8px;
     display: flex;
     gap: 8px;
     flex-direction: column;
+    max-width: 700px;
+    margin-inline: auto;
 }
 .container img, .container canvas {
     border-radius: 8px;
@@ -64,6 +67,8 @@
     position: fixed;
     left: 16px;
     right: 16px;
+    max-width: 700px;
+    margin-inline: auto;
 }
 .messageInput {
     width: 100%;
@@ -73,4 +78,28 @@
     padding: 1rem;
     border-radius: 8px;
     border: none;
+}
+.input button {
+    font-weight: 900;
+    border: 2px solid transparent;
+}
+.input button:hover {
+    border: 2px solid var(--light);
+}
+.cameraGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: dense;
+    gap: 8px;
+}
+@media (max-width: 480px) {
+    .cameraGrid {
+        grid-template-columns: unset;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+.camera {
+    border: 2px solid var(--light);
+    width: 100%;
+    height: 100%;
 }

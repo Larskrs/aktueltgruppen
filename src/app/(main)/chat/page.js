@@ -11,6 +11,7 @@ export default function Home() {
     const [shouldConnect, setShouldConnect] = useState(false); 
     const [incomingVideoData, setIncomingVideoData] = useState(null);
     const [record, setRecord] = useState(true);
+    const [clients, setClients] = useState(0)
 
     function Connect () {
 
@@ -28,6 +29,9 @@ export default function Home() {
             const data = JSON.parse(event.data.toString());
             console.log(socket)
             // Check if the received data contains client ID
+            if (data.clients) {
+                setClients(data.clients)
+            }
             if (data.changeClientId) {
                 console.log('Client ID = ', clientId);
                 console.log('Setting client ID ', data.changeClientId)
@@ -86,6 +90,9 @@ export default function Home() {
     function processStream () {
         if (!ws) { return; }
         var canvas = document.getElementById('canvas');
+        if (!canvas) {
+            return
+        }
         var video = document.getElementById('webcam');
         canvas.width = 640;
         canvas.height = 360
@@ -106,9 +113,11 @@ export default function Home() {
         <div className={styles.container}>
             {clientId && <p>Client ID: {clientId}</p>} {/* Display client ID if available */}
 
-            <video style={{display: "none"}} id='webcam' width={640} height={360} autoPlay/>
-            <canvas  id='canvas' width={640} height={360} />
-            {record && <img alt='' fetchPriority='high' src={`${incomingVideoData}`} width={640} height={360}/>}
+            <video  style={{display: "none"}} id='webcam' width={640} height={360} autoPlay/>
+            <div className={styles.cameraGrid}>
+                <canvas className={styles.camera} id='canvas' width={640} height={360} />
+                {record && <img className={styles.camera}  alt='' fetchPriority='high' src={`${incomingVideoData}`} width={640} height={360}/>}
+            </div>
 
             <ul className={styles.messageContainer}>
                 {messages.filter((m) => {
