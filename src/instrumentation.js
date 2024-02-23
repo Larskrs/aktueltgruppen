@@ -1,6 +1,9 @@
 
 
 export function register () {
-    console.log("Register function ran.")
+    console.log("BOOTING UP...")
+
+    console.log(`Starting up in [${process.env.ENVIRONMENT === 'production' ? 'production' : 'development'}]`)
+
     import('@/server/socket.js')
 }

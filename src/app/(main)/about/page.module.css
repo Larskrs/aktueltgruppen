@@ -25,7 +25,7 @@
 .hero .image {
     position: relative;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 .image img {
     object-fit: cover;

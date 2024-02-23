@@ -2,14 +2,12 @@ const WebSocket = require('ws');
 import { v1 } from 'uuid';
 
 let clients = 0; 
-const wss = new WebSocket.Server({ port: 3001 });
+const wss = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT });
 let requests = 0;
 
 wss.on('connection', (ws) => {
     const clientId = v1();
     console.log(`Client ${clientId} connected`);
-
-    
 
     // Send client ID to the new client
     ws.send(JSON.stringify({changeClientId: clientId}));
@@ -46,4 +44,4 @@ wss.on('connection', (ws) => {
 });
 
 
-console.log('WebSocket server running on ws://localhost:3001');
+console.log(`WebSocket server running on ws://${process.env.WEBSOCKET_HOST}:${process.env.WEBSOCKET_PORT}`);

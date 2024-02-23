@@ -20,14 +20,14 @@ export default function Home() {
 
     useEffect(() => {
         let client = null;
-        const socket = new WebSocket('ws://localhost:3001');
+        const url = `ws://${process.env.WebSocket.host}:${process.env.WebSocket.port}`;
+        const socket = new WebSocket(url);
         socket.onopen = () => {
             console.log('Connected to WebSocket server');
             setWs(socket);
         };
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data.toString());
-            console.log(socket)
             // Check if the received data contains client ID
             if (data.clients) {
                 setClients(data.clients)
@@ -71,6 +71,10 @@ export default function Home() {
     
     useEffect(() => {
         const webcam = document.getElementById('webcam');
+
+        if (!navigator.mediaDevices) {
+			return;
+		}
 
         if (navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true })
