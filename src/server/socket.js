@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 import { v1 } from 'uuid';
 
 let clients = 0; 
-const wss = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT });
+const wss = new WebSocket.Server({ port: process.env.WebSocket.port });
 let requests = 0;
 
 wss.on('connection', (ws) => {
@@ -44,4 +44,4 @@ wss.on('connection', (ws) => {
 });
 
 
-console.log(`WebSocket server running on ws://${process.env.WEBSOCKET_HOST}:${process.env.WEBSOCKET_PORT}`);
+console.log(`WebSocket server running on ws://${process.env.WebSocket.host}:${process.env.WebSocket.port}`);

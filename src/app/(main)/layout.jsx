@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./layout.module.css"
 import { usePathname } from "next/navigation";
 import useFetch from "../../../hooks/useFetch";
+import Image from "next/image";
 
 const navLinks = [,
     { name: "Om oss", href: "/about"} ,
@@ -49,6 +50,10 @@ export default function Layout({ children }) {
     return (
         <div className={styles.container}>
             <nav className={styles.nav}>
+
+                <Link href={"/"}>
+                    <Image src={"/aktuelt_icon.svg"} width={42} height={42} />
+                </Link>
                 
                 {navLinks.map((link) => {
                 const isActive = pathname.startsWith(link.href)
@@ -62,7 +67,7 @@ export default function Layout({ children }) {
                 )
                 })}
 
-                <div className={styles.widget}>{clients} Personer</div>
+                {/* <div className={styles.widget}>{clients} person{clients > 1 ? "er" : ""}</div> */}
             
             </nav>
 

@@ -1,0 +1,131 @@
+
+
+
+
+
+.container {
+    height: 400px;
+    position: relative;
+}
+.backdrop {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+}
+.backdrop_image {
+    width: 100%; 
+    grid-column-start: 2;
+    position: relative;
+}
+.gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    background: linear-gradient(90deg, var(--header-color) 0%, transparent 100%)
+}
+.user_info {
+    padding: 1rem 1rem 1rem 1rem;
+    padding-left:10vw;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    z-index: 1;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--header-color);
+    gap: 16px;
+}
+.title {
+    font-size: 48px;
+    max-width: 500px;
+    text-justify: distribute-all-lines;
+}
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    margin-block: 8px;
+}
+.stats span {
+    font-weight: 700;
+    font-size: 22px;
+    color: white;
+
+}
+.stats p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #cecece;
+}
+
+
+@media only screen and (min-width: 1200px) {
+    .backdrop {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .title {
+        font-size: 36px;
+    }
+    .user_info {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 1rem;
+        align-items: center;
+    }
+    .user_info .stats {
+        flex-direction: column;
+        align-items: flex-start;
+        width: fit-content;
+    }
+    .title {
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .backdrop {
+        grid-template-columns: 1fr;
+    }
+    .backdrop_image {
+        grid-column-start: 1;
+    }
+    .gradient {
+        opacity: .75;
+        background: linear-gradient(90deg, var(--header-color) 50%, transparent 100%)
+    }
+    .user_info {
+        z-index: 3;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 2rem;
+        width: 100%;
+        background-color: transparent;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .stats {
+        align-items: flex-start;
+        width: 100%;
+    }
+    .title {
+        text-align: start;
+        font-size: 30px;
+        width: 100%;
+    }
+}

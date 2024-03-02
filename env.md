@@ -9,6 +9,6 @@ ENVIRONMENT="production"
 ### Websocket settings
 
 ```
-WEBSOCKET_PORT = 80
+WEBSOCKET_PORT = 3001
 WEBSOCKET_HOST = "localhost"
 ```
