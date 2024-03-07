@@ -12,34 +12,6 @@ export default function About_Page () {
                 <div>
                     {/* <About.Header
                         backdrop={{
-                            image: "http://aktuelt.tv/api/v1/files?fileId=64d56819-41b6-4917-bc27-b1011939bdeb.JPG",
-                            color: "#4d5051"
-                        }}
-                        user={{
-                            name: "Levin Winther Tjønnås",
-                        }}
-                        stats={{
-                            products: 16,
-                            tasks: 125,
-                            rank: 4
-                        }}
-                    /> */}
-                    {/* <About.Header
-                        backdrop={{
-                            image: "http://aktuelt.tv/api/v1/files?fileId=a67bbd63-01b9-4a23-a29f-9d943575a0d9.JPG",
-                            color: "#494540"
-                        }}
-                        user={{
-                            name: "Eirik Hormo Nomme",
-                        }}
-                        stats={{
-                            products: 16,
-                            tasks: 125,
-                            rank: 4
-                        }}
-                    /> */}
-                    <About.Header
-                        backdrop={{
                             image: "http://aktuelt.tv/api/v1/files?fileId=1455186b-f929-42e1-82f7-2b49e2c78ed0.JPG",
                             color: "#000"
                         }}
@@ -52,20 +24,45 @@ export default function About_Page () {
                             rank: 4,
                             status: "Ansatt i Aktuelt Studio"
                         }}
+                    /> */}
+                    <About.Header
+                        backdrop={{
+                            image: "/images/bugge.jpg",
+                        }}
+                        color={{
+                            background: "#ffffff",
+                            primary   : "#340100",
+                            text      : "#4700f4",
+                            subtext   : "#444"
+                        }}
+                        user={{
+                            name: "Bugge Wesseltoft",
+                        }}
+                        stats={{
+                            products: null,
+                            tasks: null,
+                            rank: null,
+                            status: "Tilbyr ikke åpen chat."
+                        }}
                     />
                     {/* <About.Header
                         backdrop={{
-                            image: "http://aktuelt.tv/api/v1/files?fileId=bcafaea4-a6eb-422d-93cc-ba1fb4acdad6.jpeg",
-                            color: "#2b3919"
+                            image: "http://aktuelt.tv/api/v1/files?fileId=495f3789-08f0-491c-b050-e56876943448.JPG",
+                        }}
+                        color={{
+                            background: "#d23a0f",
+                            primary   : "#340100",
+                            text      : "#ffffff",
+                            subtext   : "#ffffff",
                         }}
                         user={{
-                            name: "Julius den femte",
+                            name: "Langesund Kirke",
                         }}
                         stats={{
-                            products: "2 bananer",
-                            tasks: 2,
-                            rank: 1,
-                            status: "Kristiansand Dyrepark"
+                            products: 16,
+                            tasks: 125,
+                            rank: 4,
+                            status: "Tilbyr ikke åpen chat."
                         }}
                     /> */}
                 </div>

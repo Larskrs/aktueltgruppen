@@ -51,7 +51,7 @@ export default function Layout({ children }) {
         <div className={styles.container}>
             <nav className={styles.nav}>
 
-                <Link href={"/"}>
+                <Link href={"/"} className={styles.logo}>
                     <Image src={"/aktuelt_icon.svg"} width={42} height={42} />
                 </Link>
                 
@@ -67,13 +67,29 @@ export default function Layout({ children }) {
                 )
                 })}
 
-                {/* <div className={styles.widget}>{clients} person{clients > 1 ? "er" : ""}</div> */}
+                <div className={styles.widget}>Menu</div>
             
             </nav>
 
             <main className={styles.main}>
                 {children}
             </main>
+
+            <footer className={styles.footer}>
+                <div className={styles.grid}>
+                    <section>
+                        <h2>Kontakt Oss</h2>
+                        <p>Epost <span>info@aktuelt.tv</span></p>
+                    </section>
+                    <section>
+                        <Image style={{objectFit: "contain"}} src={"/aktuelt.svg"} width={200} height={50}/>
+                    </section>
+                    <section>
+                            <Link href={"/"}>Prosjekter</Link>
+                            <Link href={"/"}>Tilbud til elever</Link>
+                    </section>
+                </div>
+            </footer>
         </div>
     );
 }

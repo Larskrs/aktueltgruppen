@@ -1,10 +1,8 @@
 
 
 
-
-
 .container {
-    height: 400px;
+    height: 500px;
     position: relative;
 }
 .backdrop {
@@ -16,7 +14,7 @@
     grid-template-rows: 1fr;
 }
 .backdrop_image {
-    width: 100%; 
+    width: 100%;
     grid-column-start: 2;
     position: relative;
 }
@@ -27,26 +25,27 @@
     top: 0;
     bottom: 0;
     z-index: 2;
-    background: linear-gradient(90deg, var(--header-color) 0%, transparent 100%)
+    background: linear-gradient(90deg, var(--header-background) 0%, transparent 100%)
 }
 .user_info {
-    padding: 1rem 1rem 1rem 1rem;
+    padding: calc(0 + var(--nav-height)) 1rem 1rem 1rem;
     padding-left:10vw;
     display: flex;
     flex-direction: column;
-    color: white;
+    color: var(--header-subtext);
     grid-column-start: 1;
     grid-column-end: 2;
     z-index: 1;
     align-items: flex-start;
     justify-content: center;
-    background-color: var(--header-color);
+    background-color: var(--header-background);
     gap: 16px;
 }
 .title {
     font-size: 48px;
     max-width: 500px;
     text-justify: distribute-all-lines;
+    color: var(--header-text);
 }
 .stats {
     display: flex;
@@ -56,17 +55,24 @@
     gap: 8px;
     margin-block: 8px;
 }
+
 .stats span {
     font-weight: 700;
     font-size: 22px;
-    color: white;
+    color: var(--header-text);
 
 }
 .stats p {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #cecece;
+    color: var(--header-subtext);
+}
+.highlighted {
+    padding: 4px 8px;
+    background-color: var(--header-text);
+    color: var(--header-background) !important;
+    border-radius: 8px;
 }
 
 
@@ -94,7 +100,7 @@
         text-align: center;
     }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
     .backdrop {
         grid-template-columns: 1fr;
     }
@@ -103,7 +109,7 @@
     }
     .gradient {
         opacity: .75;
-        background: linear-gradient(90deg, var(--header-color) 50%, transparent 100%)
+        background: linear-gradient(90deg, var(--header-background) 50%, transparent 100%)
     }
     .user_info {
         z-index: 3;
