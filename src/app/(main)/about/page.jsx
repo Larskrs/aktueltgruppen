@@ -25,38 +25,41 @@ export default function About_Page () {
                             status: "Ansatt i Aktuelt Studio"
                         }}
                     /> */}
-                    <About.Header
+                    {/* <About.Header
                         backdrop={{
                             image: "/images/bugge.jpg",
+                            position: "center"
                         }}
                         color={{
                             background: "#ffffff",
-                            primary   : "#340100",
+                            primary   : "#4700f4",
                             text      : "#4700f4",
-                            subtext   : "#444"
+                            subtext   : "#444444"
                         }}
                         user={{
                             name: "Bugge Wesseltoft",
                         }}
                         stats={{
-                            products: null,
-                            tasks: null,
-                            rank: null,
+                            products: 2,
+                            tasks: 120,
+                            rank: 2,
                             status: "Tilbyr ikke åpen chat."
                         }}
-                    />
+                    /> */}
                     {/* <About.Header
                         backdrop={{
-                            image: "http://aktuelt.tv/api/v1/files?fileId=495f3789-08f0-491c-b050-e56876943448.JPG",
+                            image: "/images/HeddalKirkje.jpg",
+                            position: "top"
                         }}
                         color={{
-                            background: "#d23a0f",
-                            primary   : "#340100",
-                            text      : "#ffffff",
-                            subtext   : "#ffffff",
+                            background: "white",
+                            primary   : "#33333350",
+                            text      : "#000000",
+                            subtext   : "#666666",
+                            logo      : "transparent"
                         }}
                         user={{
-                            name: "Langesund Kirke",
+                            name: "Heddal Kirke",
                         }}
                         stats={{
                             products: 16,
@@ -65,11 +68,47 @@ export default function About_Page () {
                             status: "Tilbyr ikke åpen chat."
                         }}
                     /> */}
+                    <About.Header
+                        backdrop={{
+                            image: "/images/passion.jpg",
+                            position: "center"
+                        }}
+                        color={{
+                            background: "#ffffff",
+                            primary   : "#33333350",
+                            text      : "#000000",
+                            subtext   : "#666666",
+                            logo      : "transparent"
+                        }}
+                        user={{
+                            name: "Frus med Fersken & passjonsfrukt",
+                        }}
+                        stats={{
+                            status: "Få ro og smak i hverdagen."
+                        }}
+                    />
                 </div>
 
 
                 
                 <div className={styles.hero}>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/Frus/fizzy.jpg"} fill />
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/Frus/calm.jpg"} fill />
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/Frus/passjonsfrukt.jpg"} fill />
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/Frus/flaske.png"} fill ></Common.FadeImage>
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/Frus/passion.jpg"} fill objectPosition={"right"} />
+                    </div>
+                </div>
+                {/* <div className={styles.hero}>
                     <div className={styles.image}>
                         <Common.FadeImage src={"http://aktuelt.tv/api/v1/files?fileId=dfeca617-8314-42ba-a941-021625339c29.JPG"} fill ></Common.FadeImage>
                     </div>
@@ -85,7 +124,7 @@ export default function About_Page () {
                     <div className={styles.image}>
                         <Common.FadeImage src={"http://aktuelt.tv/api/v1/files?fileId=20f1b305-c16a-4848-994f-fcf8769ba0eb.jpg"} fill />
                     </div>
-                </div>
+                </div> */}
 
                 <Users />
         </div>

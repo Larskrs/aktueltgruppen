@@ -54,8 +54,7 @@
 }
 .inactive, .active {
     width: 120px;
-    border: 2px solid var(--header-subtext);
-    padding: 16px 8px;
+    /* border: 2px solid var(--header-subtext); */
     border-radius: 8px;
     transition: 240ms cubic-bezier(.35,.17,.3,.86);
     font-weight: 700;
@@ -69,17 +68,18 @@
 }
 .active {
     width: 160px;
-    border: 2px solid var(--header-text);
+    /* border: 2px solid var(--header-text); */
     color: var(--header-text);
 }
 
 .widget {
     padding: 16px;
     height: 20px;
-    background-color: var(--secondary);
+    backdrop-filter: blur(10px);
     border-radius: 8px;
     transition: 240ms cubic-bezier(.35,.17,.3,.86);
     color: var(--header-background);
+    background-color: var(--header-primary);
     font-weight: 700;
     font-size: 1em;
     display: flex;
@@ -111,5 +111,11 @@
 @media only screen and (max-width: 700px) {
     .nav {
         background-color: var(--header-background);
+    }
+    .inactive {
+        display: none;
+    }
+    .active {
+        border: none;
     }
 }

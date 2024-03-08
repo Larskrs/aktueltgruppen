@@ -7,12 +7,14 @@ import { Color, Solver, hexToRgb } from "../../../lib/color"
 export default function Header ({
     backdrop={
         image: "http://aktuelt.tv/api/v1/files?fileId=8bde18e4-b041-4cf5-8e8f-d97c99d1609a.jpg",
+        position: "center"
     },
     color={
         background: "#000000",
         text: "#ffffff",
         subtext: "#cecece",
-        primary: "#3b0100"
+        primary: "#3b0100",
+        logo   : "transparent"
     },
     user={name:"Joe Swanson Smith"},
     stats={products: 2, tasks: 4, rank: 999, status: "VGS"}
@@ -28,6 +30,7 @@ export default function Header ({
                     --header-text: ${color.text};
                     --header-subtext: ${color.subtext};
                     --header-primary: ${color.primary};
+                    --header-image-position: ${backdrop.position};
                 }
                 `}</style>
             <div className={styles.backdrop}>

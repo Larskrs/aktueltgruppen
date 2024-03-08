@@ -18,6 +18,9 @@
     grid-column-start: 2;
     position: relative;
 }
+.backdrop_image img {   
+    object-position: var(--header-image-position);
+}
 .gradient {
     position: absolute;
     left: 0;
@@ -102,25 +105,25 @@
 }
 @media only screen and (max-width: 1000px) {
     .backdrop {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
     .backdrop_image {
-        grid-column-start: 1;
+        grid-column-start: 2;
     }
     .gradient {
-        opacity: .75;
-        background: linear-gradient(90deg, var(--header-background) 50%, transparent 100%)
+        opacity: 1;
+        background: linear-gradient(90deg, var(--header-background) 0%, transparent 100%)
     }
     .user_info {
         z-index: 3;
         position: absolute;
+        background-color: var(--header-background);
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
         padding: 2rem;
         width: 100%;
-        background-color: transparent;
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
@@ -133,5 +136,39 @@
         text-align: start;
         font-size: 30px;
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+
+    .container {
+        margin-top: var(--nav-height);
+        height: 600px;
+    }
+    .backdrop {
+        grid-template-rows: 5fr 6fr;
+        grid-template-columns: 1fr;
+    }
+    .backdrop_image {
+        grid-column-start: 1;
+        padding: 1rem;
+        overflow: hidden;
+        grid-row-start: 1;
+        grid-row-end: 1;
+        background-color: var(--header-background);
+    }
+    .backdrop_image img {
+        border-radius: 16px;
+    }
+    .gradient {
+        display: none;
+    }
+    .user_info {
+        grid-row-start: 2;
+        grid-row-end: 2;
+        align-items: flex-start;
+        padding: 16px;
+        display: flex;
+        justify-content: flex-start;
     }
 }
