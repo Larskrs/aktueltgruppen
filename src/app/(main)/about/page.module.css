@@ -27,7 +27,6 @@
 .hero > div {
     background-color: var(--midnight);
     border-radius: 16px;
-    border: 1px solid var(--midnight-background);
 }
 .hero > div:nth-child(1) {
     grid-column-start: 1;

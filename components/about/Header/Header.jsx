@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import styles from './Header.module.css'
 import { Common } from '../..';
-import { Color, Solver, hexToRgb } from "../../../lib/color"
 
 export default function Header ({
     backdrop={
@@ -30,6 +29,7 @@ export default function Header ({
                     --header-text: ${color.text};
                     --header-subtext: ${color.subtext};
                     --header-primary: ${color.primary};
+                    --header-logo: ${color.logo};
                     --header-image-position: ${backdrop.position};
                 }
                 `}</style>

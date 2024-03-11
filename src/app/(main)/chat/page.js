@@ -2,6 +2,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import styles from "./page.module.css";
+import { Input } from '../../../../components';
 
 export default function Home() {
     const [ws, setWs] = useState(null);
@@ -117,30 +118,27 @@ export default function Home() {
         <div className={styles.container}>
             {clientId && <p>Client ID: {clientId}</p>} {/* Display client ID if available */}
 
-            <video  style={{display: "none"}} id='webcam' width={640} height={360} autoPlay/>
+            {/* <video  style={{display: "none"}} id='webcam' width={640} height={360} autoPlay/>
+
             <div className={styles.cameraGrid}>
                 <canvas className={styles.camera} id='canvas' width={640} height={360} />
                 {record && <img className={styles.camera}  alt='' fetchPriority='high' src={`${incomingVideoData}`} width={640} height={360}/>}
-            </div>
+            </div> */}
 
             <ul className={styles.messageContainer}>
                 {messages.filter((m) => {
                     return m.text
                 }).map((msg, index) => (
-                    <div key={index} className={styles.message} style={clientId == msg.clientId ? {background: "#222 ", marginLeft: "auto"} : {}}>
-                        <span style={clientId == msg.clientId ? {background: "#b17f7f"} : {}}>{clientId == msg.clientId ? "You" : "Anon"}</span>
+                    <div key={index} className={styles.message} style={clientId == msg.clientId ? {background: "var(--midnight) ", marginLeft: "auto"} : {}}>
+                        <span style={clientId == msg.clientId ? {background: "var(--primary)"} : {}}>{clientId == msg.clientId ? "You" : "Anon"}</span>
                         <p >{msg.text}</p>
                     </div>
                 ))}
             </ul>
             <div className={styles.input}>
-                <input className={styles.messageInput} type="text" value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={((e) => {
-                    if (e.key === "Enter") {
-                        sendMessage()
-                    }
-                })} />
+                <Input.NamedField resetOnEnter={true} onChange={(value) => {setMessage(value)}} onEnter={() => {sendMessage()}} />
                 <button onClick={sendMessage}>Send</button>
             </div>
-        </div>
+            </div>
     );
 }

@@ -1,0 +1,127 @@
+.field {
+    display: flex;
+    width: fit-content;
+    background-color: var(--midnight);
+    border: 1px solid var(--midnight-highlight);
+    border-radius: 8px;
+    align-items: center;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field {
+    border: none;
+    height: 100%;
+    width: fit-content;
+    min-width: 200px;
+    min-height: 36px;
+    padding: 8px;
+    background-color: var(--midnight);
+    outline: none;
+    border: 1px solid var(--midnight-highlight);
+    border-radius: 8px;
+    transition: all 200ms ease-in-out;
+    font-size: 16px;
+    position: relative;
+}
+.field:has(input:focus) {
+    padding: 1rem;
+    border: 1px solid transparent;
+    font-size: 20px;
+    width: 100%;
+}
+.input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: red;
+    opacity: 0;
+    background-color: transparent;
+}
+.field p {
+    font-size: 20px;
+    display: flex;
+    max-height: 400px;
+    word-break: break-all;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.word {
+    opacity: 0;
+    pointer-events: none;
+    font-size: 14px;
+    animation: fade-in 500ms ease-in-out forwards;
+}
+.field:has(input:focus) .word {
+    font-size: 20px;
+}
+.field:has(input:focus) .indicator {
+    opacity: 1;
+}
+.indicator {
+    width: 32px;
+    position: relative;
+    display: flex;
+    gap: 8px;
+    translate: 8px 6px;
+    opacity: 0;
+}
+.indicator span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+}
+.indicator span:nth-child(1) {
+    animation: 1000ms linear float infinite;
+}
+.indicator span:nth-child(2) {
+    animation: 1000ms 100ms linear float infinite;
+}
+.indicator span:nth-child(3) {
+    animation: 1000ms 250ms linear float infinite;
+}
+@keyframes float {
+    0% {
+        translate: 0px 0px;
+    }
+    25% {
+        translate: 0px 4px;
+        background-color: var(--primary);
+    }
+    75% {
+        translate: 0px -4px;
+        background-color: var(--primary-dark);
+    }
+    100% {
+        translate: 0px px;
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        scale: 1.2;
+    }
+    30% {
+        opacity: 0;
+        scale: 1.1;
+    }
+    60% {
+        scale: .9;
+    }
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}

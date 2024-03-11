@@ -1,0 +1,23 @@
+.main {
+    background-color: var(--midnight);
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    height: fit-content;
+    position: fixed;
+    flex-direction: column;
+    gap: 16px;
+
+}
+.container {
+    background-color: var(--midnight-background);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    padding-top: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

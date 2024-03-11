@@ -12,11 +12,17 @@ export default function About_Page () {
                 <div>
                     {/* <About.Header
                         backdrop={{
-                            image: "http://aktuelt.tv/api/v1/files?fileId=1455186b-f929-42e1-82f7-2b49e2c78ed0.JPG",
-                            color: "#000"
+                            image: "/images/Lars.jpg",
                         }}
                         user={{
                             name: "Lars Kristian Småge Syvertsen",
+                        }}
+                        color={{
+                            background: "black",
+                            primary   : "#ffffff50",
+                            text      : "#a83731",
+                            subtext   : "#999999",
+                            logo      : "transparent"
                         }}
                         stats={{
                             products: 16,
@@ -31,10 +37,11 @@ export default function About_Page () {
                             position: "center"
                         }}
                         color={{
-                            background: "#ffffff",
+                            background: "#000000",
                             primary   : "#4700f4",
                             text      : "#4700f4",
-                            subtext   : "#444444"
+                            subtext   : "#cccccc",
+                            logo      : "transparent"
                         }}
                         user={{
                             name: "Bugge Wesseltoft",
@@ -46,20 +53,20 @@ export default function About_Page () {
                             status: "Tilbyr ikke åpen chat."
                         }}
                     /> */}
-                    {/* <About.Header
+                    <About.Header
                         backdrop={{
-                            image: "/images/HeddalKirkje.jpg",
-                            position: "top"
+                            image: "/images/dome.jpg",
+                            position: "center"
                         }}
                         color={{
-                            background: "white",
-                            primary   : "#33333350",
-                            text      : "#000000",
-                            subtext   : "#666666",
+                            background: "#eb4b1a",
+                            primary   : "#aa3410",
+                            text      : "#ffffff",
+                            subtext   : "#eeeeee",
                             logo      : "transparent"
                         }}
                         user={{
-                            name: "Heddal Kirke",
+                            name: "Langesund Kirke",
                         }}
                         stats={{
                             products: 16,
@@ -67,8 +74,8 @@ export default function About_Page () {
                             rank: 4,
                             status: "Tilbyr ikke åpen chat."
                         }}
-                    /> */}
-                    <About.Header
+                    />
+                    {/* <About.Header
                         backdrop={{
                             image: "/images/passion.jpg",
                             position: "center"
@@ -86,11 +93,31 @@ export default function About_Page () {
                         stats={{
                             status: "Få ro og smak i hverdagen."
                         }}
-                    />
+                    /> */}
                 </div>
 
-
+                <br style={{marginBlock: "1rem"}} />
                 
+                <div className={styles.hero}>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/WierdLars.jpg"} fill />
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/HeddalKirkje.jpg"} fill />
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/Glass.jpg"} fill />
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/dome.jpg"} fill ></Common.FadeImage>
+                    </div>
+                    <div className={styles.image}>
+                        <Common.FadeImage src={"/images/HeddalKirkje.jpg"} fill style={{objectPosition: "right"}} />
+                    </div>
+                </div>
+
+                <About.Projects />
+
                 <div className={styles.hero}>
                     <div className={styles.image}>
                         <Common.FadeImage src={"/images/Frus/fizzy.jpg"} fill />
@@ -105,7 +132,7 @@ export default function About_Page () {
                         <Common.FadeImage src={"/images/Frus/flaske.png"} fill ></Common.FadeImage>
                     </div>
                     <div className={styles.image}>
-                        <Common.FadeImage src={"/images/Frus/passion.jpg"} fill objectPosition={"right"} />
+                        <Common.FadeImage src={"/images/Frus/passion.jpg"} fill style={{objectPosition: "right"}} />
                     </div>
                 </div>
                 {/* <div className={styles.hero}>
