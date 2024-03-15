@@ -6,17 +6,6 @@ export default function Films () {
     return (
         <div className={styles.container}>
 
-            <style jsx global>{`
-                :root {
-                    --header-background: var(--midnight);
-                    --header-text: #ffffff;
-                    --header-subtext:#ffffff;
-                    --header-primary: #10111a40;
-                    --header-logo: transparent;
-                    --header-image-position: center;
-                }
-                `}</style>
-
                 <main className={styles.main}>
                     <Input.NamedField title="Password" />
                     <Input.NamedField title="Password" />

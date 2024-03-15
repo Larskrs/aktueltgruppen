@@ -13,8 +13,7 @@ export default function NamedField({
     return (
         <div className={styles.container}>
             <p className={styles.text}>
-                {/* {title} */}
-
+                {title}
             </p>
             <div className={styles.field}>
                 <label htmlFor="input"></label>

@@ -2,18 +2,26 @@
     width: 100vw;
     min-height: 100%;
     padding: 1rem;
-    background-color: var(--midnight-background);
+    background-color: var(--background-50);
     padding-top: var(--nav-height);
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll !important;
 }
 .messageContainer {
     padding: 2rem 0px;
     margin-bottom: 2rem;
     border-radius: 8px;
     display: flex;
-    gap: 8px;
+    gap: 16px;
     flex-direction: column;
     max-width: 700px;
     margin-inline: auto;
+    padding: 1rem;
+    padding-bottom: 8rem;
 }
 .container img, .container canvas {
     border-radius: 8px;
@@ -30,35 +38,37 @@
     }
 }
 .message {
-    background-color: var(--midnight);
+    background-color: var(--background-200);
     border-radius: 8px;
     padding: 1rem;
     width: fit-content;
     position: relative;
     animation: pop_in 250ms cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
-
+    color: var(--text-900);
     opacity: 0;
 }
 .message span {
     left: 0;
+    color: var(--text-900);
     top: 0;
     width: fit-content;
-    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     font-weight: 500;
+    font-size: 14px;
     translate:
-        -50%
-        -50%
+        -75%
+        -40%
     ;
+    height: 42px;
+    width: 42px;
 
     background-color: #fbda46;
-    background-color: var(--secondary);
-    padding: 4px;
-    border-radius: 8px;
-    color: black;
+    background-color: var(--background-300);
+    border-radius: 50%;
+    border: 4px solid var(--background-50);
 }
 
 .input {
@@ -83,9 +93,11 @@
     border: 2px solid transparent;
     padding: 8px 16px;
     border-radius: 8px;
+    background-color: var(--background-200);
+    cursor: pointer;
 }
 .input button:hover {
-    border: 2px solid var(--light);
+    background-color: var(--background-500);
 }
 .cameraGrid {
     display: grid;

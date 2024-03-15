@@ -51,7 +51,7 @@ export default function Layout({ children }) {
         <div className={styles.container}>
             <nav className={styles.nav}>
 
-                <Link href={"/"} className={styles.logo}>
+                <Link href={"/"} className={`${styles.logo} white`}>
                     <Image src={"/aktuelt_icon.svg"} width={42} height={42} />
                 </Link>
                 

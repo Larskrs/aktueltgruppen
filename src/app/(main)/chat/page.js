@@ -129,14 +129,14 @@ export default function Home() {
                 {messages.filter((m) => {
                     return m.text
                 }).map((msg, index) => (
-                    <div key={index} className={styles.message} style={clientId == msg.clientId ? {background: "var(--midnight) ", marginLeft: "auto"} : {}}>
-                        <span style={clientId == msg.clientId ? {background: "var(--primary)"} : {}}>{clientId == msg.clientId ? "You" : "Anon"}</span>
+                    <div key={index} className={styles.message} style={clientId == msg.clientId ? {background: "var(--secondary-200) ", marginLeft: "auto"} : {}}>
+                        <span style={clientId == msg.clientId ? {background: "var(--secondary-400)"} : {}}>{clientId == msg.clientId ? "You" : "Anon"}</span>
                         <p >{msg.text}</p>
                     </div>
                 ))}
             </ul>
             <div className={styles.input}>
-                <Input.NamedField resetOnEnter={true} onChange={(value) => {setMessage(value)}} onEnter={() => {sendMessage()}} />
+                <Input.NamedField title='' resetOnEnter={true} onChange={(value) => {setMessage(value)}} onEnter={() => {sendMessage()}} />
                 <button onClick={sendMessage}>Send</button>
             </div>
             </div>

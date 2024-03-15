@@ -1,16 +1,21 @@
 .field {
     display: flex;
     width: fit-content;
-    background-color: var(--midnight);
-    border: 1px solid var(--midnight-highlight);
     border-radius: 8px;
     align-items: center;
     overflow: hidden;
 }
+.title {
+    font-weight: 500;
+    font-size: 14px;
+}
 .container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+}
+.text {
+    font-size: 14px;
 }
 
 .field {
@@ -20,9 +25,9 @@
     min-width: 200px;
     min-height: 36px;
     padding: 8px;
-    background-color: var(--midnight);
     outline: none;
-    border: 1px solid var(--midnight-highlight);
+    background-color: var(--background-100);
+    border: 1px solid var(--background-200);
     border-radius: 8px;
     transition: all 200ms ease-in-out;
     font-size: 16px;
@@ -32,7 +37,6 @@
     padding: 1rem;
     border: 1px solid transparent;
     font-size: 20px;
-    width: 100%;
 }
 .input {
     position: absolute;
@@ -98,11 +102,11 @@
     }
     25% {
         translate: 0px 4px;
-        background-color: var(--primary);
+        background-color: var(--accent-500);
     }
     75% {
         translate: 0px -4px;
-        background-color: var(--primary-dark);
+        background-color: var(--primary-500);
     }
     100% {
         translate: 0px px;
