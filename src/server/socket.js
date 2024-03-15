@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 import { v1 } from 'uuid';
 
 let clients = 0; 
-const wss = new WebSocket.Server({ port: process.env.WebSocket.port });
+const wss = new WebSocket.Server({ port: process.env.WebSocket.port, host: process.env.WebSocket.host });
 let requests = 0;
 
 wss.on('connection', (ws) => {

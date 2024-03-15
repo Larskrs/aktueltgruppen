@@ -22,6 +22,7 @@ export default function Home() {
     useEffect(() => {
         let client = null;
         const url = `ws://${process.env.WebSocket.host}:${process.env.WebSocket.port}`;
+        console.log(`Connecting to ${url}`);
         const socket = new WebSocket(url);
         socket.onopen = () => {
             console.log('Connected to WebSocket server');
