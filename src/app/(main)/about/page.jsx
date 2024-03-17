@@ -10,7 +10,7 @@ export default function About_Page () {
         <div className={styles.container}>
 
                 <div>
-                    <About.Header
+                    {/* <About.Header
                         backdrop={{
                             image: "/images/Lars.jpg",
                         }}
@@ -30,7 +30,7 @@ export default function About_Page () {
                             rank: 4,
                             status: "Jævla Scrawny neger"
                         }}
-                    />
+                    /> */}
                     {/* <About.Header
                         backdrop={{
                             image: "/images/bugge.jpg",
@@ -75,7 +75,7 @@ export default function About_Page () {
                             status: "Tilbyr ikke åpen chat."
                         }}
                     /> */}
-                    {/* <About.Header
+                    <About.Header
                         backdrop={{
                             image: "/images/passion.jpg",
                             position: "center"
@@ -93,7 +93,7 @@ export default function About_Page () {
                         stats={{
                             status: "Få ro og smak i hverdagen."
                         }}
-                    /> */}
+                    />
                 </div>
 
                 <br style={{marginBlock: "1rem"}} />

@@ -51,7 +51,7 @@
     opacity: 0;
     background-color: transparent;
 }
-.field p {
+.field div {
     font-size: 20px;
     display: flex;
     max-height: 400px;

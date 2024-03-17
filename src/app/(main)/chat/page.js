@@ -78,6 +78,14 @@ export default function Home() {
         <div className={styles.container}>
             {clientId && <p>Client ID: {clientId}</p>}
 
+            <div className={styles.header}>
+                <h1>Velkommen til Aktuelt Chat</h1>
+                <p>Skriv inn brukernavnet ditt for å begynne å chatte.</p>
+                <br />
+
+                <Input.NamedField disabled={true} title='Brukernavn' />
+            </div>
+
             <ul className={styles.messageContainer}>
                 {messages.filter((m) => m.text).map((msg, index) => (
                     <div key={index} className={styles.message} style={clientId === msg.clientId ? { marginLeft: "auto" } : {}}>

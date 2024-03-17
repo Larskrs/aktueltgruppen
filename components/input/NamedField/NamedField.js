@@ -6,6 +6,8 @@ export default function NamedField({
     onChange=(() => {}),
     onEnter=(() => {}),
     resetOnEnter=false,
+    disabled=false,
+    submitButton="Send"
 }) {
 
     const [_value, setValue] = useState("");
@@ -17,33 +19,29 @@ export default function NamedField({
             </p>
             <div className={styles.field}>
                 {/* <label htmlFor="input"></label> */}
-                <input
-                    id="input"
-                    onChange={(e) => {
-                        setValue(e.target.value);
-                        onChange(e.target.value);
-                    }}
-                    value={_value}
-                    className={styles.input}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            onEnter();
-                            if (resetOnEnter) setValue("");
-                        }
-                    }}
-                />
-                {_value.split(" ").map((word, i) => (
-                    <span key={i} className={styles.word}>
-                        {word}
-                    </span>
-                ))}
-                <div className={styles.indicator}>
-                    <span />
-                    <span />
-                    <span />
+                <input disabled={disabled} id="input" onChange={(e) => {setValue(e.target.value); onChange(e.target.value)}} value={_value} className={styles.input} 
+                onKeyDown={((e) => {
+                    if (e.key === "Enter") {
+                        onEnter()
+                        if (resetOnEnter) setValue("");
+                    }
+                })} />
+                <div>
+                {_value.split(" ").map((word, i) => {
+                    return <span key={i} className={styles.word}>{word}</span>   
+                })}
+                    <div className={styles.indicator}>
+                        <span />
+                        <span />
+                        <span />
+                    </div>
                 </div>
+                
             </div>
+                {/* <button>
+                    {submitButton}
+                </button> */}
         </div>
     );
-    
 }
+
