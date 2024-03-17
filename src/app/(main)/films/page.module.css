@@ -5,18 +5,15 @@
     width: 100%;
     max-width: 600px;
     display: flex;
-    height: fit-content;
-    position: fixed;
     flex-direction: column;
     gap: 16px;
+    margin-block: 2rem;
 
 }
 .container {
     background-color: var(--background-50);
     width: 100%;
-    height: 100vh;
-    position: fixed;
-    padding-top: var(--nav-height);
+    min-height: calc(100vh - var(--nav-height));
     display: flex;
     align-items: center;
     justify-content: center;

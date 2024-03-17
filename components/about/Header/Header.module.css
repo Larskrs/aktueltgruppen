@@ -2,10 +2,12 @@
 
 
 .container {
-    height: 500px;
+    height: 360px;
     position: relative;
     transition: all 1s ease-in-out;
-    background-color: var(--header-background);
+    padding: 1rem;
+    margin-inline: auto;
+    max-width: 1200px;
 }
 .backdrop {
     overflow: hidden;
@@ -14,6 +16,8 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
+    border-radius: 32px;
+    box-shadow: 0px 0px 50px var(--background-100);
 }
 .backdrop_image {
     width: 100%;
@@ -144,8 +148,7 @@
 @media only screen and (max-width: 700px) {
 
     .container {
-        margin-top: var(--nav-height);
-        height: 600px;
+        height: 500px;
     }
     .backdrop {
         grid-template-rows: 5fr 6fr;

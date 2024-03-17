@@ -10,7 +10,7 @@ export default function About_Page () {
         <div className={styles.container}>
 
                 <div>
-                    {/* <About.Header
+                    <About.Header
                         backdrop={{
                             image: "/images/Lars.jpg",
                         }}
@@ -18,7 +18,7 @@ export default function About_Page () {
                             name: "Lars Kristian Småge Syvertsen",
                         }}
                         color={{
-                            background: "black",
+                            background: "var(--text-900)",
                             primary   : "#ffffff50",
                             text      : "#a83731",
                             subtext   : "#999999",
@@ -28,9 +28,9 @@ export default function About_Page () {
                             products: 16,
                             tasks: 125,
                             rank: 4,
-                            status: "Ansatt i Aktuelt Studio"
+                            status: "Jævla Scrawny neger"
                         }}
-                    /> */}
+                    />
                     {/* <About.Header
                         backdrop={{
                             image: "/images/bugge.jpg",
@@ -53,7 +53,7 @@ export default function About_Page () {
                             status: "Tilbyr ikke åpen chat."
                         }}
                     /> */}
-                    <About.Header
+                    {/* <About.Header
                         backdrop={{
                             image: "/images/dome.jpg",
                             position: "center"
@@ -74,7 +74,7 @@ export default function About_Page () {
                             rank: 4,
                             status: "Tilbyr ikke åpen chat."
                         }}
-                    />
+                    /> */}
                     {/* <About.Header
                         backdrop={{
                             image: "/images/passion.jpg",

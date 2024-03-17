@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: var(--midnight-background);
+    background-color: var(--background-50);
 }
 .hero {
     min-height: 40vh;

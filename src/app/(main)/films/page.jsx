@@ -7,10 +7,10 @@ export default function Films () {
         <div className={styles.container}>
 
                 <main className={styles.main}>
-                    <Input.NamedField title="Password" />
-                    <Input.NamedField title="Password" />
+                    <Input.NamedField title="Fortell oss litt om deg." />
                     <Input.NamedButton name="Rediger Profil" title="Rediger Profil" description="Endre utsenet på profilen etter hvilke spill du spiller."/>
                     <Input.NamedSwitch title="Offentlig Profil" description="Vil du gjør profilen din synlig for alle? Din profil vil bli synlig i søkemotorer og innlegg kan deles av andre."/>
+
                     
                 </main>
 

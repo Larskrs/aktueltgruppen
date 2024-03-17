@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from "./page.module.css";
 import { Input } from '../../../../components';
 
@@ -11,8 +11,8 @@ export default function Home() {
     const [clientId, setClientId] = useState(null); // State variable to store client ID
     const [shouldConnect, setShouldConnect] = useState(false); 
     const [incomingVideoData, setIncomingVideoData] = useState(null);
-    const [record, setRecord] = useState(true);
     const [clients, setClients] = useState(0)
+    const messageEndRef = useRef(null);
 
     function Connect () {
 
@@ -47,6 +47,7 @@ export default function Home() {
                 return;
             }
             setMessages(prevMessages => [...prevMessages, data]);
+            scrollToBottom()
         };
         socket.onclose = () => {
             console.log('Disconnected from WebSocket server');
@@ -59,53 +60,7 @@ export default function Home() {
         };
         
     }, []);
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-          // Your code to run every 1000 milliseconds goes here
-          processStream()
-        }, 1000/60);
-
-        return () => {
-          clearInterval(intervalId);
-        };
-      }, [ws, incomingVideoData]);
     
-    useEffect(() => {
-        const webcam = document.getElementById('webcam');
-
-        if (!navigator.mediaDevices) {
-			return;
-		}
-
-        if (navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then((stream) => {
-                    webcam.srcObject = stream;
-                    let {width, height} = stream.getTracks()[0].getSettings();
-                    processStream()
-                })
-                .catch((error) => {
-                    console.error('Error accessing webcam:', error);
-                });
-        } else {
-            console.error('getUserMedia not supported in this browser.');
-        }
-    }, []);
-
-    function processStream () {
-        if (!ws) { return; }
-        var canvas = document.getElementById('canvas');
-        if (!canvas) {
-            return
-        }
-        var video = document.getElementById('webcam');
-        canvas.width = 640;
-        canvas.height = 360
-        canvas.getContext('2d').drawImage(video, 0, 0, 640, 360);
-        let resultb64 = canvas.toDataURL();
-        ws.send(JSON.stringify({video: resultb64}));
-    }
 
     const sendMessage = () => {
         if (ws && message) {
@@ -115,31 +70,27 @@ export default function Home() {
         }
     };
 
+    const scrollToBottom = () => {
+        messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <div className={styles.container}>
-            {clientId && <p>Client ID: {clientId}</p>} {/* Display client ID if available */}
-
-            {/* <video  style={{display: "none"}} id='webcam' width={640} height={360} autoPlay/>
-
-            <div className={styles.cameraGrid}>
-                <canvas className={styles.camera} id='canvas' width={640} height={360} />
-                {record && <img className={styles.camera}  alt='' fetchPriority='high' src={`${incomingVideoData}`} width={640} height={360}/>}
-            </div> */}
+            {clientId && <p>Client ID: {clientId}</p>}
 
             <ul className={styles.messageContainer}>
-                {messages.filter((m) => {
-                    return m.text
-                }).map((msg, index) => (
-                    <div key={index} className={styles.message} style={clientId == msg.clientId ? {background: "var(--secondary-200) ", marginLeft: "auto"} : {}}>
-                        <span style={clientId == msg.clientId ? {background: "var(--secondary-400)"} : {}}>{clientId == msg.clientId ? "You" : "Anon"}</span>
-                        <p >{msg.text}</p>
+                {messages.filter((m) => m.text).map((msg, index) => (
+                    <div key={index} className={styles.message} style={clientId === msg.clientId ? { marginLeft: "auto" } : {}}>
+                        <span style={clientId === msg.clientId ? { } : {}}>{clientId === msg.clientId ? "You" : "Unknown User"}</span>
+                        <p>{msg.text + ""}</p>
                     </div>
                 ))}
+                <div ref={messageEndRef} />
             </ul>
             <div className={styles.input}>
-                <Input.NamedField title='' resetOnEnter={true} onChange={(value) => {setMessage(value)}} onEnter={() => {sendMessage()}} />
+                <Input.NamedField title='' resetOnEnter={true} onChange={(value) => setMessage(value)} onEnter={() => sendMessage()} />
                 <button onClick={sendMessage}>Send</button>
             </div>
-            </div>
+        </div>
     );
 }

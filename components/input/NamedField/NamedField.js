@@ -16,7 +16,7 @@ export default function NamedField({
                 {title}
             </p>
             <div className={styles.field}>
-                <label htmlFor="input"></label>
+                {/* <label htmlFor="input"></label> */}
                 <input id="input" onChange={(e) => {setValue(e.target.value); onChange(e.target.value)}} value={_value} className={styles.input} 
                 onKeyDown={((e) => {
                     if (e.key === "Enter") {

@@ -22,9 +22,9 @@ export default function Header ({
 }) {
 
     return (
-        <div className={styles.container}>
-            <style jsx global>{`
-                :root {
+        <div className={`${styles.container} container`}>
+            <style jsx>{`
+                .container {
                     --header-background: ${color.background};
                     --header-text: ${color.text};
                     --header-subtext: ${color.subtext};
