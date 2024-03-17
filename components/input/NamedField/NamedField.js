@@ -17,26 +17,33 @@ export default function NamedField({
             </p>
             <div className={styles.field}>
                 {/* <label htmlFor="input"></label> */}
-                <input id="input" onChange={(e) => {setValue(e.target.value); onChange(e.target.value)}} value={_value} className={styles.input} 
-                onKeyDown={((e) => {
-                    if (e.key === "Enter") {
-                        onEnter()
-                        if (resetOnEnter) setValue("");
-                    }
-                })} />
-                <p>
-                    {_value.split(" ").map((word, i) => {
-                        return <span key={i} className={styles.word}>{word}</span>   
-                    })}
-                    <div className={styles.indicator}>
-                        <span />
-                        <span />
-                        <span />
-                    </div>
-                </p>
-                
+                <input
+                    id="input"
+                    onChange={(e) => {
+                        setValue(e.target.value);
+                        onChange(e.target.value);
+                    }}
+                    value={_value}
+                    className={styles.input}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            onEnter();
+                            if (resetOnEnter) setValue("");
+                        }
+                    }}
+                />
+                {_value.split(" ").map((word, i) => (
+                    <span key={i} className={styles.word}>
+                        {word}
+                    </span>
+                ))}
+                <div className={styles.indicator}>
+                    <span />
+                    <span />
+                    <span />
+                </div>
             </div>
-            <p></p>
         </div>
     );
+    
 }
