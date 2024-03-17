@@ -17,6 +17,19 @@
 .text {
     font-size: 14px;
 }
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.button {
+    background-color: var(--background-300);
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    height: fit-content;
+}
 
 .field {
     border: none;
@@ -32,6 +45,16 @@
     transition: all 200ms ease-in-out;
     font-size: 16px;
     position: relative;
+}
+.field:has(input:disabled) {
+    background-color: transparent;
+    border: 1px solid var(--secondary-100);
+    width: 0px;
+}
+.row:has(input:disabled) .button {
+    opacity: 0;
+    width: 0;
+    padding: 0;
 }
 .field:has(input:focus) {
     padding: 1rem;

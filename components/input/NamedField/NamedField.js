@@ -6,24 +6,30 @@ export default function NamedField({
     onChange=(() => {}),
     onEnter=(() => {}),
     resetOnEnter=false,
+    lockOnEnter=false,
     disabled=false,
-    submitButton="Send"
+    submitButton=null
 }) {
 
     const [_value, setValue] = useState("");
+    const [lockInput, setLockInput] = useState(disabled)
 
     return (
         <div className={styles.container}>
             <p className={styles.text}>
                 {title}
             </p>
+            <div className={styles.row}>
+
             <div className={styles.field}>
                 {/* <label htmlFor="input"></label> */}
-                <input disabled={disabled} id="input" onChange={(e) => {setValue(e.target.value); onChange(e.target.value)}} value={_value} className={styles.input} 
+                <input disabled={lockInput} id="input" onChange={(e) => {setValue(e.target.value); onChange(e.target.value)}} value={_value} className={styles.input} 
                 onKeyDown={((e) => {
                     if (e.key === "Enter") {
-                        onEnter()
-                        if (resetOnEnter) setValue("");
+                        if (_value === "") { return }
+                        onEnter(_value)
+                        if (resetOnEnter) setValue("")
+                        if (lockOnEnter) setLockInput(true)
                     }
                 })} />
                 <div>
@@ -38,9 +44,19 @@ export default function NamedField({
                 </div>
                 
             </div>
-                {/* <button>
+
+            {submitButton &&
+                <button className={styles.button} onClick={() => {
+                    if (_value === "") { return }
+                    onEnter(_value)
+                    if (resetOnEnter) setValue("")
+                    if (lockOnEnter) setLockInput(true)
+                }}>
                     {submitButton}
-                </button> */}
+                </button>
+            }
+
+            </div>
         </div>
     );
 }

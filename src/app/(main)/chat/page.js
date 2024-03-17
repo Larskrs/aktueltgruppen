@@ -12,6 +12,8 @@ export default function Home() {
     const [shouldConnect, setShouldConnect] = useState(false); 
     const [incomingVideoData, setIncomingVideoData] = useState(null);
     const [clients, setClients] = useState(0)
+    const [usernane, setUsername] = useState("");
+    const [isChatting, setIsChatting] = useState(false)
     const messageEndRef = useRef(null);
 
     function Connect () {
@@ -47,6 +49,7 @@ export default function Home() {
                 return;
             }
             setMessages(prevMessages => [...prevMessages, data]);
+            console.log(data)
             scrollToBottom()
         };
         socket.onclose = () => {
@@ -61,6 +64,12 @@ export default function Home() {
         
     }, []);
     
+    const connectToRoom = (username) => {
+            console.log('Connecting to room ' + username)
+            const messageObject = { setUsername: username };
+            ws.send(JSON.stringify(messageObject));
+            setIsChatting(true)
+    };
 
     const sendMessage = () => {
         if (ws && message) {
@@ -76,29 +85,35 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            {clientId && <p>Client ID: {clientId}</p>}
+            {/* {clientId && <p>Client ID: {clientId}</p>} */}
 
             <div className={styles.header}>
                 <h1>Velkommen til Aktuelt Chat</h1>
                 <p>Skriv inn brukernavnet ditt for å begynne å chatte.</p>
                 <br />
 
-                <Input.NamedField disabled={true} title='Brukernavn' />
+                <Input.NamedField disabled={isChatting} title='Brukernavn' submitButton='Sett Brukernavn' resetOnEnter={false} lockOnEnter={true} onEnter={(val) => {
+                    connectToRoom(val);
+                }} />
             </div>
 
-            <ul className={styles.messageContainer}>
-                {messages.filter((m) => m.text).map((msg, index) => (
-                    <div key={index} className={styles.message} style={clientId === msg.clientId ? { marginLeft: "auto" } : {}}>
-                        <span style={clientId === msg.clientId ? { } : {}}>{clientId === msg.clientId ? "You" : "Unknown User"}</span>
-                        <p>{msg.text + ""}</p>
-                    </div>
-                ))}
-                <div ref={messageEndRef} />
-            </ul>
-            <div className={styles.input}>
-                <Input.NamedField title='' resetOnEnter={true} onChange={(value) => setMessage(value)} onEnter={() => sendMessage()} />
-                <button onClick={sendMessage}>Send</button>
-            </div>
+            {isChatting &&
+            <>
+                <ul className={styles.messageContainer}>
+                    {messages.filter((m) => m.text).map((msg, index) => (
+                        <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: "var(--accent-300)" } : {background: "var(--secondary-300)"}}>
+                            <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
+                            <p>{msg.text + ""}</p>
+                        </div>
+                    ))}
+                    <div ref={messageEndRef} />
+                </ul>
+                <div className={styles.input}>
+                    <Input.NamedField title='' resetOnEnter={true} onChange={(value) => setMessage(value)} onEnter={() => sendMessage()} />
+                    <button onClick={sendMessage}>Send</button>
+                </div>
+            </>
+            }
         </div>
     );
 }
