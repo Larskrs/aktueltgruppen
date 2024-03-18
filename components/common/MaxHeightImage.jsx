@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const MaxHeightImage = ({ src, alt, maxHeight }) => {
+const MaxHeightImage = ({ src, alt, maxHeight, onLoad=() => {}}) => {
   const [width, setWidth] = useState('100%');
 
   useEffect(() => {
@@ -11,6 +11,7 @@ const MaxHeightImage = ({ src, alt, maxHeight }) => {
       const aspectRatio = img.width / img.height;
       const maxWidth = maxHeight * aspectRatio;
       setWidth(maxWidth > img.width ? '100%' : `${maxWidth}px`);
+      onLoad()
     };
   }, [src, maxHeight]);
 

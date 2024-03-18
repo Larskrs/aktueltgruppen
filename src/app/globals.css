@@ -202,9 +202,15 @@ a {
 .white {
   filter: none;
 }
+.invert {
+  filter: invert(15%);
+}
 @media (prefers-color-scheme: light) {
   .white {
     background: var(--background-400);
+  }
+  .invert {
+    filter: invert(75%);
   }
 }
 

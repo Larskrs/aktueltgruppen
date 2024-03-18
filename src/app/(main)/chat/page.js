@@ -136,7 +136,7 @@ export default function Home() {
                                 <div key={index} className={styles.image_attachment} style={clientId === msg.clientId ? {marginLeft: "auto" } : {}}>
                                     <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
                                     <div>
-                                        <MaxHeightImage maxHeight={300} src={msg.image} />          
+                                        <MaxHeightImage maxHeight={300} src={msg.image} onLoad={() => {scrollToBottom()}}/>          
                                     </div>
                                 </div>
                             )
@@ -149,7 +149,7 @@ export default function Home() {
                     <div ref={messageEndRef} />
                 </ul>
                 <div className={styles.input}>
-                    <label htmlFor='fileInput'>Bilde</label>
+                    <label htmlFor='fileInput' className={styles.imageSelect}><NextImage className='invert' width={32} height={32} src={"/icons/Image Select Icon.svg"} /></label>
                     <input id='fileInput' style={{display: "none"}} type='file' accept='.png, .jpg, .gif' onChange={(e) => {console.log(e.target.files); convertImageToBase64(URL.createObjectURL(e.target.files[0]), (url) => {
                         setMessage("")
                         ws.send(JSON.stringify({type: "image_attachment", image: url}))

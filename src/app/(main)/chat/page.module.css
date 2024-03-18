@@ -126,6 +126,35 @@
     overflow: hidden;
     border-radius: 16px;
 }
+.imageSelect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-100);
+    padding: 4px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.imageSelect img {
+    border-radius: 0px;
+    background: transparent;
+    box-shadow: none;
+    object-position: center;
+}
+.imageSelect:hover img {
+    animation: 500ms hover cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+.imageSelect:hover {
+    animation: 250ms hover cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+@keyframes hover {
+    0% {
+        scale: 1;
+    }
+    100% {
+        scale: 1.05;
+    }
+}
 @media (max-width: 480px) {
     .cameraGrid {
         grid-template-columns: unset;
