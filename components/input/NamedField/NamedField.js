@@ -16,9 +16,9 @@ export default function NamedField({
 
     return (
         <div className={styles.container}>
-            <p className={styles.text}>
+            {title && <p className={styles.text}>
                 {title}
-            </p>
+            </p> }
             <div className={styles.row}>
 
             <div className={styles.field}>

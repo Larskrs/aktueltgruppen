@@ -116,6 +116,15 @@
     grid-auto-flow: dense;
     gap: 8px;
 }
+.image_attachment {
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+}
+.image_attachment div {
+    overflow: hidden;
+    border-radius: 16px;
+}
 @media (max-width: 480px) {
     .cameraGrid {
         grid-template-columns: unset;

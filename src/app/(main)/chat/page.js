@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from "./page.module.css";
 import { Input } from '../../../../components';
+import NextImage from 'next/image';
+import MaxHeightImage from '../../../../components/common/MaxHeightImage';
 
 export default function Home() {
     const [ws, setWs] = useState(null);
@@ -83,6 +85,21 @@ export default function Home() {
         messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
+    function convertImageToBase64(imgUrl, callback) {
+        const image = new Image();
+        image.crossOrigin='anonymous';
+        image.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.height = image.naturalHeight;
+          canvas.width = image.naturalWidth;
+          ctx.drawImage(image, 0, 0);
+          const dataUrl = canvas.toDataURL();
+          callback && callback(dataUrl)
+        }
+        image.src = imgUrl;
+      }
+
     return (
         <div className={styles.container}>
             {/* {clientId && <p>Client ID: {clientId}</p>} */}
@@ -110,21 +127,34 @@ export default function Home() {
                             )
                         } else if (msg.type == "user_join") {
                             return (
-                                <div className={styles.message} style={{background: "transparent", color: "var(--text-950)", marginInline: "auto"}}>
+                                <div key={index} className={styles.message} style={{background: "transparent", color: "var(--text-950)", marginInline: "auto"}}>
                                     {msg.clientId == clientId ? "Du" : msg.username} ble med i samtalen.
+                                </div>
+                            )
+                        } else if (msg.type == "image_attachment") {
+                            return (
+                                <div key={index} className={styles.image_attachment}>
+                                    <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
+                                    <div>
+                                        <MaxHeightImage maxHeight={300} src={msg.image} />          
+                                    </div>
                                 </div>
                             )
                         } else {
                             // return (
-                            //     <p>{JSON.stringify(msg) + ""}</p>
+                            //     <p key={index} style={{marginInline: "auto"}}>{JSON.stringify(msg) + ""}</p>
                             // )
                         }
                     })}
                     <div ref={messageEndRef} />
                 </ul>
                 <div className={styles.input}>
-                    <Input.NamedField title='' resetOnEnter={true} onChange={(value) => setMessage(value)} onEnter={() => sendMessage()} />
-                    <button onClick={sendMessage}>Send</button>
+                    <input type='file' accept='.png, .jpg, .gif' onChange={(e) => {console.log(e.target.files); convertImageToBase64(URL.createObjectURL(e.target.files[0]), (url) => {
+                        setMessage("")
+                        ws.send(JSON.stringify({type: "image_attachment", image: url}))
+                        console.log(url)
+                    })}} />
+                    <Input.NamedField title='' submitButton={"Send"} resetOnEnter={true} onChange={(value) => setMessage(value)} onEnter={() => sendMessage()} />
                 </div>
             </>
             }
