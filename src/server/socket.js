@@ -30,13 +30,17 @@ wss.on('connection', (ws) => {
         } else if (parsedMessage.setUsername) {
             console.log(`Received USERNAME: [${parsedMessage.setUsername}] from ${clientId}`)
             username = parsedMessage.setUsername;
+
+            wss.clients.forEach((client) => {
+                client.send(JSON.stringify({type: "user_join", clientId, username}))
+            })
         }
         
         // Add client ID to the message
         const messageWithClientId = { ...parsedMessage, clientId, username };
         // Broadcast the message to all clients
         wss.clients.forEach((client) => {
-                client.send(JSON.stringify(messageWithClientId));
+            client.send(JSON.stringify(messageWithClientId));
         });
     });
 

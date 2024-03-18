@@ -73,7 +73,7 @@ export default function Home() {
 
     const sendMessage = () => {
         if (ws && message) {
-            const messageObject = { text: message };
+            const messageObject = { type: "text", text: message };
             ws.send(JSON.stringify(messageObject));
             setMessage('');
         }
@@ -100,12 +100,26 @@ export default function Home() {
             {isChatting &&
             <>
                 <ul className={styles.messageContainer}>
-                    {messages.filter((m) => m.text).map((msg, index) => (
-                        <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: "var(--accent-300)" } : {background: "var(--secondary-300)"}}>
-                            <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
-                            <p>{msg.text + ""}</p>
-                        </div>
-                    ))}
+                    {messages.filter((m) => m).map((msg, index) => {
+                        if (msg.type == "text") {
+                            return (
+                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: "var(--accent-300)" } : {background: "var(--secondary-300)"}}>
+                                    <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
+                                    <p>{msg.text}</p>
+                                </div>
+                            )
+                        } else if (msg.type == "user_join") {
+                            return (
+                                <div className={styles.message} style={{background: "transparent", color: "var(--text-950)", marginInline: "auto"}}>
+                                    {msg.clientId == clientId ? "Du" : msg.username} ble med i samtalen.
+                                </div>
+                            )
+                        } else {
+                            // return (
+                            //     <p>{JSON.stringify(msg) + ""}</p>
+                            // )
+                        }
+                    })}
                     <div ref={messageEndRef} />
                 </ul>
                 <div className={styles.input}>
