@@ -133,7 +133,7 @@ export default function Home() {
                             )
                         } else if (msg.type == "image_attachment") {
                             return (
-                                <div key={index} className={styles.image_attachment}>
+                                <div key={index} className={styles.image_attachment} style={clientId === msg.clientId ? {marginLeft: "auto" } : {}}>
                                     <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
                                     <div>
                                         <MaxHeightImage maxHeight={300} src={msg.image} />          
@@ -149,7 +149,8 @@ export default function Home() {
                     <div ref={messageEndRef} />
                 </ul>
                 <div className={styles.input}>
-                    <input type='file' accept='.png, .jpg, .gif' onChange={(e) => {console.log(e.target.files); convertImageToBase64(URL.createObjectURL(e.target.files[0]), (url) => {
+                    <label htmlFor='fileInput'>Bilde</label>
+                    <input id='fileInput' style={{display: "none"}} type='file' accept='.png, .jpg, .gif' onChange={(e) => {console.log(e.target.files); convertImageToBase64(URL.createObjectURL(e.target.files[0]), (url) => {
                         setMessage("")
                         ws.send(JSON.stringify({type: "image_attachment", image: url}))
                         console.log(url)
