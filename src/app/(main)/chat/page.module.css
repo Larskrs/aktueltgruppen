@@ -65,8 +65,12 @@
     opacity: 0;
     min-width: 100px;
 }
-.message span {
-
+.message a {
+    color: var(--text-950);
+    background-color: var(--background-50);
+    border-radius: 4px;
+    padding: 8px;
+    margin-right: 4px;
 }
 .username {
     left: 0;

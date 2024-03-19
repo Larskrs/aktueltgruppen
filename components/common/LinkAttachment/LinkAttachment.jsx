@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const LinkAttachment = ({ url }) => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(url);
 
   useEffect(() => {
     const fetchTitle = async () => {
@@ -12,7 +12,9 @@ const LinkAttachment = ({ url }) => {
         try {
           const response = await axios.get(apiUrl, { params: { url: targetUrl } });
           console.log('Title:', response.data.title);
-          setTitle(response.data.title)
+          if (response.data.title) {
+            setTitle(response.data.title)
+          }
           console.log('Description:', response.data.description);
           console.log('Icon:', response.data.icon);
         } catch (error) {
