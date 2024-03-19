@@ -110,6 +110,16 @@
 .input button:hover {
     background-color: var(--background-500);
 }
+.server_message {
+    display: flex;
+    gap: 8px;
+    background-color: var(--background-100);
+    padding: 8px 16px;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    border-radius: 8px;
+}
 .cameraGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;

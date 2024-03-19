@@ -16,11 +16,21 @@ export default function Home() {
     const [clients, setClients] = useState(0)
     const [usernane, setUsername] = useState("");
     const [isChatting, setIsChatting] = useState(false)
+    const [users, setUsers] = useState([])
     const messageEndRef = useRef(null);
 
     function Connect () {
 
         
+    }
+
+    const shadeColor = (col, amt) => {
+        var num = parseInt(col, 16);
+        var r = (num >> 16) + amt;
+        var b = ((num >> 8) & 0x00FF) + amt;
+        var g = (num & 0x0000FF) + amt;
+        var newColor = g | (b << 8) | (r << 16);
+        return newColor.toString(16);
     }
 
     useEffect(() => {
@@ -50,6 +60,13 @@ export default function Home() {
                 setIncomingVideoData(data.video)
                 return;
             }
+            if (data.type && data.type == "user_join") {
+                setUsers([...users, {
+                    clientId: data.clientId,
+                    username: data.username,
+                    color:    data.color
+                }])
+            }
             setMessages(prevMessages => [...prevMessages, data]);
             console.log(data)
             scrollToBottom()
@@ -66,9 +83,9 @@ export default function Home() {
         
     }, []);
     
-    const connectToRoom = (username) => {
+    const connectToRoom = (username, color) => {
             console.log('Connecting to room ' + username)
-            const messageObject = { setUsername: username };
+            const messageObject = { setUsername: username, setColor: color };
             ws.send(JSON.stringify(messageObject));
             setIsChatting(true)
     };
@@ -84,6 +101,12 @@ export default function Home() {
     const scrollToBottom = () => {
         messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
+    const getUser = (clientId) => {
+        const filtered = users.filter((user) => user.clientId == clientId)
+        if (filtered.length > 0) {
+            return filtered[0]
+        }
+    }
 
     function convertImageToBase64(imgUrl, callback) {
         const image = new Image();
@@ -109,10 +132,13 @@ export default function Home() {
                 <p>Skriv inn brukernavnet ditt for å begynne å chatte.</p>
                 <br />
 
-                <Input.NamedField disabled={isChatting} title='Brukernavn' submitButton='Sett Brukernavn' resetOnEnter={false} lockOnEnter={true} onEnter={(val) => {
-                    connectToRoom(val);
+                <Input.NamedField disabled={isChatting} title='Brukernavn' submitButton='Sett Brukernavn' resetOnEnter={false} lockOnEnter={true} onEnter={(username) => {
+                   let color = "#" + Math.floor(Math.random()*16777215).toString(16);
+                   connectToRoom(username, color);
                 }} />
             </div>
+
+            {console.log(users)}
 
             {isChatting &&
             <>
@@ -120,15 +146,22 @@ export default function Home() {
                     {messages.filter((m) => m).map((msg, index) => {
                         if (msg.type == "text") {
                             return (
-                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: "var(--accent-300)" } : {background: "var(--secondary-300)"}}>
-                                    <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
+                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: "var(--accent-300)" } : {background: msg.color}}>
+                                    <span style={{color: msg.color}}>{msg.username}</span>
                                     <p>{msg.text}</p>
                                 </div>
                             )
                         } else if (msg.type == "user_join") {
                             return (
+                                <div key={index} className={styles.server_message}>
+                                    <span style={{color: msg.color}}>{msg.clientId == clientId ? "Du" : msg.username}</span>
+                                     ble med i samtalen
+                                </div>
+                            )
+                        } else if (msg.type == "user_disconnect") {
+                            return (
                                 <div key={index} className={styles.message} style={{background: "transparent", color: "var(--text-950)", marginInline: "auto"}}>
-                                    {msg.clientId == clientId ? "Du" : msg.username} ble med i samtalen.
+                                    {msg.username} forlot samtalen.
                                 </div>
                             )
                         } else if (msg.type == "image_attachment") {
@@ -141,9 +174,9 @@ export default function Home() {
                                 </div>
                             )
                         } else {
-                            // return (
-                            //     <p key={index} style={{marginInline: "auto"}}>{JSON.stringify(msg) + ""}</p>
-                            // )
+                            return (
+                                <p key={index} style={{marginInline: "auto"}}>{JSON.stringify(msg) + ""}</p>
+                            )
                         }
                     })}
                     <div ref={messageEndRef} />

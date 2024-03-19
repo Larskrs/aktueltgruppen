@@ -4,10 +4,12 @@ import { v1 } from 'uuid';
 let clients = 0; 
 const wss = new WebSocket.Server({ port: process.env.WebSocket.port });
 let requests = 0;
+let users = []
 
 wss.on('connection', (ws) => {
     const clientId = v1();
-    let username = "Unknown User"
+    let username = null
+    let color = null
     console.log(`Client ${clientId} connected`);
 
     // Send client ID to the new client
@@ -29,15 +31,18 @@ wss.on('connection', (ws) => {
             console.log(parsedMessage.text)
         } else if (parsedMessage.setUsername) {
             console.log(`Received USERNAME: [${parsedMessage.setUsername}] from ${clientId}`)
+            console.log(`Received СOLOR   : [${parsedMessage.setColor}] from ${parsedMessage.setUsername}`)
             username = parsedMessage.setUsername;
+            color    = parsedMessage.setColor;
 
             wss.clients.forEach((client) => {
-                client.send(JSON.stringify({type: "user_join", clientId, username}))
+                client.send(JSON.stringify({type: "user_join", clientId, username, color}))
             })
+            return;
         }
         
         // Add client ID to the message
-        const messageWithClientId = { ...parsedMessage, clientId, username };
+        const messageWithClientId = { ...parsedMessage, clientId, username, color};
         // Broadcast the message to all clients
         wss.clients.forEach((client) => {
             client.send(JSON.stringify(messageWithClientId));
@@ -47,7 +52,8 @@ wss.on('connection', (ws) => {
     ws.on('close', () => {
         console.log(`Client ${clientId} disconnected`);
         wss.clients.forEach((client) => {
-            client.send(JSON.stringify({clients: wss.clients.size}));
+            if (username) client.send(JSON.stringify({type: "user_disconnect", clientId, username}))
+            client.send(JSON.stringify({clients: wss.clients.size, users: users.size}));
         });
     });
 });
