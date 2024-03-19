@@ -66,6 +66,9 @@
     min-width: 100px;
 }
 .message span {
+
+}
+.username {
     left: 0;
     color: var(--text-900);
     top: 0;
@@ -79,7 +82,6 @@
     font-size: 14px;
     min-width: fit-content;
     translate: 0 -112.5%;
-
 }
 
 .input {

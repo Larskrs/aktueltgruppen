@@ -2,9 +2,11 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
 import styles from "./page.module.css";
-import { Input } from '../../../../components';
+import { Input, Common } from '../../../../components';
 import NextImage from 'next/image';
+import { isValidURL } from "../../../../lib/url"
 import MaxHeightImage from '../../../../components/common/MaxHeightImage';
+import Link from 'next/link';
 
 export default function Home() {
     const [ws, setWs] = useState(null);
@@ -32,39 +34,52 @@ export default function Home() {
         var newColor = g | (b << 8) | (r << 16);
         return newColor.toString(16);
     }
-    function createHexColor(hue, saturation, brightness) {
-        // Convert HSB to RGB
-        let chroma = brightness * saturation;
-        let hue1 = hue / 60;
-        let x = chroma * (1 - Math.abs(hue1 % 2 - 1));
-        let r1, g1, b1;
-    
-        if (hue1 >= 0 && hue1 < 1) {
-            [r1, g1, b1] = [chroma, x, 0];
-        } else if (hue1 >= 1 && hue1 < 2) {
-            [r1, g1, b1] = [x, chroma, 0];
-        } else if (hue1 >= 2 && hue1 < 3) {
-            [r1, g1, b1] = [0, chroma, x];
-        } else if (hue1 >= 3 && hue1 < 4) {
-            [r1, g1, b1] = [0, x, chroma];
-        } else if (hue1 >= 4 && hue1 < 5) {
-            [r1, g1, b1] = [x, 0, chroma];
-        } else {
-            [r1, g1, b1] = [chroma, 0, x];
-        }
-    
-        let m = brightness - chroma;
-        let r = Math.floor((r1 + m) * 255);
-        let g = Math.floor((g1 + m) * 255);
-        let b = Math.floor((b1 + m) * 255);
-    
-        // Convert RGB to HEX
-        let hexR = r.toString(16).padStart(2, '0');
-        let hexG = g.toString(16).padStart(2, '0');
-        let hexB = b.toString(16).padStart(2, '0');
-    
-        return `#${hexR}${hexG}${hexB}`;
+    function generateColor(hue, saturation, lightness, tintAmount, shadeAmount) {
+        // Convert hue from degrees to 0-360 range
+        hue = hue % 360;
+
+        // Convert saturation and lightness to 0-100 range
+        saturation = Math.max(0, Math.min(100, saturation));
+        lightness = Math.max(0, Math.min(100, lightness));
+
+        // Convert tint and shade amounts to 0-1 range
+        tintAmount = Math.max(0, Math.min(1, tintAmount));
+        shadeAmount = Math.max(0, Math.min(1, shadeAmount));
+
+        // Calculate tint and shade
+        const tint = 100 - lightness;
+        const shade = lightness;
+
+        // Apply tint and shade
+        const newLightness = lightness + (tint * tintAmount) - (shade * shadeAmount);
+
+        // Convert color from HSL to hex
+        const hslToHex = (h, s, l) => {
+            l /= 100;
+            const a = s * Math.min(l, 1 - l) / 100;
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+            };
+            return `#${f(0)}${f(8)}${f(4)}`;
+        };
+
+        return hslToHex(hue, saturation, newLightness);
     }
+
+    function generateRandomColor() {
+        // Generate random values for hue, saturation, and lightness
+        const hue = Math.floor(Math.random() * 360);
+        const saturation = 75 + Math.floor(Math.random() * 25);
+        // const saturation = 100
+        // const lightness = 40
+        const lightness = 20 + Math.floor(Math.random() * 30);
+
+        // Convert HSL to hex
+        return generateColor(hue, saturation, lightness, 0, 0);
+    }
+
     
 
     useEffect(() => {
@@ -166,7 +181,7 @@ export default function Home() {
                 <br />
 
                 <Input.NamedField disabled={isChatting} title='Brukernavn' submitButton='Sett Brukernavn' resetOnEnter={false} lockOnEnter={true} onEnter={(username) => {
-                   let color = createHexColor(Math.floor(Math.random() * 360), .5, .7)
+                   let color = generateRandomColor()
                    connectToRoom(username, color);
                 }} />
             </div>
@@ -178,8 +193,18 @@ export default function Home() {
                         if (msg.type == "text") {
                             return (
                                 <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: msg.color } : {background: msg.color}}>
-                                    <span style={{color: msg.color}}>{msg.username}</span>
-                                    <p>{msg.text}</p>
+                                    <span className={styles.username} style={{color: msg.color}}>{msg.username}</span>
+                                    <p>{msg.text.split(" ").map((word, i) => {
+                                        if (isValidURL(word)) {
+                                            return (
+                                                <Link key={i} href={word}><Common.LinkAttachment url={word} /></Link>
+                                            )
+                                        } else {
+                                            return (
+                                                <span key={i}>{word} </span>
+                                            )
+                                        }
+                                    })}</p>
                                 </div>
                             )
                         } else if (msg.type == "user_join") {
