@@ -52,7 +52,7 @@ wss.on('connection', (ws) => {
     ws.on('close', () => {
         console.log(`Client ${clientId} disconnected`);
         wss.clients.forEach((client) => {
-            if (username) client.send(JSON.stringify({type: "user_disconnect", clientId, username}))
+            if (username) client.send(JSON.stringify({type: "user_disconnect", clientId, username, color}))
             client.send(JSON.stringify({clients: wss.clients.size, users: users.size}));
         });
     });

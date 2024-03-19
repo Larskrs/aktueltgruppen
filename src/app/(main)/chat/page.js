@@ -32,6 +32,40 @@ export default function Home() {
         var newColor = g | (b << 8) | (r << 16);
         return newColor.toString(16);
     }
+    function createHexColor(hue, saturation, brightness) {
+        // Convert HSB to RGB
+        let chroma = brightness * saturation;
+        let hue1 = hue / 60;
+        let x = chroma * (1 - Math.abs(hue1 % 2 - 1));
+        let r1, g1, b1;
+    
+        if (hue1 >= 0 && hue1 < 1) {
+            [r1, g1, b1] = [chroma, x, 0];
+        } else if (hue1 >= 1 && hue1 < 2) {
+            [r1, g1, b1] = [x, chroma, 0];
+        } else if (hue1 >= 2 && hue1 < 3) {
+            [r1, g1, b1] = [0, chroma, x];
+        } else if (hue1 >= 3 && hue1 < 4) {
+            [r1, g1, b1] = [0, x, chroma];
+        } else if (hue1 >= 4 && hue1 < 5) {
+            [r1, g1, b1] = [x, 0, chroma];
+        } else {
+            [r1, g1, b1] = [chroma, 0, x];
+        }
+    
+        let m = brightness - chroma;
+        let r = Math.floor((r1 + m) * 255);
+        let g = Math.floor((g1 + m) * 255);
+        let b = Math.floor((b1 + m) * 255);
+    
+        // Convert RGB to HEX
+        let hexR = r.toString(16).padStart(2, '0');
+        let hexG = g.toString(16).padStart(2, '0');
+        let hexB = b.toString(16).padStart(2, '0');
+    
+        return `#${hexR}${hexG}${hexB}`;
+    }
+    
 
     useEffect(() => {
         let client = null;
@@ -68,7 +102,6 @@ export default function Home() {
                 }])
             }
             setMessages(prevMessages => [...prevMessages, data]);
-            console.log(data)
             scrollToBottom()
         };
         socket.onclose = () => {
@@ -133,12 +166,10 @@ export default function Home() {
                 <br />
 
                 <Input.NamedField disabled={isChatting} title='Brukernavn' submitButton='Sett Brukernavn' resetOnEnter={false} lockOnEnter={true} onEnter={(username) => {
-                   let color = "#" + Math.floor(Math.random()*16777215).toString(16);
+                   let color = createHexColor(Math.floor(Math.random() * 360), .5, .7)
                    connectToRoom(username, color);
                 }} />
             </div>
-
-            {console.log(users)}
 
             {isChatting &&
             <>
@@ -146,43 +177,43 @@ export default function Home() {
                     {messages.filter((m) => m).map((msg, index) => {
                         if (msg.type == "text") {
                             return (
-                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: "var(--accent-300)" } : {background: msg.color}}>
+                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: msg.color } : {background: msg.color}}>
                                     <span style={{color: msg.color}}>{msg.username}</span>
                                     <p>{msg.text}</p>
                                 </div>
                             )
                         } else if (msg.type == "user_join") {
                             return (
-                                <div key={index} className={styles.server_message}>
-                                    <span style={{color: msg.color}}>{msg.clientId == clientId ? "Du" : msg.username}</span>
+                                <div key={index} className={styles.server_message} style={{background: msg.color, outlineColor: msg.color}}>
+                                    {msg.clientId == clientId ? "Du " : msg.username + " "}
                                      ble med i samtalen
                                 </div>
                             )
                         } else if (msg.type == "user_disconnect") {
                             return (
-                                <div key={index} className={styles.message} style={{background: "transparent", color: "var(--text-950)", marginInline: "auto"}}>
+                                <div key={index} className={styles.message} style={{background: "transparent", color: msg.color, marginInline: "auto"}}>
                                     {msg.username} forlot samtalen.
                                 </div>
                             )
                         } else if (msg.type == "image_attachment") {
                             return (
                                 <div key={index} className={styles.image_attachment} style={clientId === msg.clientId ? {marginLeft: "auto" } : {}}>
-                                    <span style={clientId === msg.clientId ? {} : {}}>{msg.username}</span>
+                                    <span style={{color: msg.color}}>{msg.username}</span>
                                     <div>
-                                        <MaxHeightImage maxHeight={300} src={msg.image} onLoad={() => {scrollToBottom()}}/>          
+                                        <MaxHeightImage maxHeight={300} src={msg.image} onLoad={() => {scrollToBottom()}}/>
                                     </div>
                                 </div>
                             )
                         } else {
-                            return (
-                                <p key={index} style={{marginInline: "auto"}}>{JSON.stringify(msg) + ""}</p>
-                            )
+                            // return (
+                            //     <p key={index} style={{marginInline: "auto"}}>{JSON.stringify(msg) + ""}</p>
+                            // )
                         }
                     })}
                     <div ref={messageEndRef} />
                 </ul>
                 <div className={styles.input}>
-                    <label htmlFor='fileInput' className={styles.imageSelect}><NextImage className='invert' width={32} height={32} src={"/icons/Image Select Icon.svg"} /></label>
+                    <label htmlFor='fileInput' className={styles.imageSelect}><NextImage alt='Image Select button' className='invert' width={32} height={32} src={"/icons/Image Select Icon.svg"} /></label>
                     <input id='fileInput' style={{display: "none"}} type='file' accept='.png, .jpg, .gif' onChange={(e) => {console.log(e.target.files); convertImageToBase64(URL.createObjectURL(e.target.files[0]), (url) => {
                         setMessage("")
                         ws.send(JSON.stringify({type: "image_attachment", image: url}))
