@@ -8,7 +8,7 @@
 
 .env
 next.config.mjs
-files
+/files
 
 # testing
 /coverage
