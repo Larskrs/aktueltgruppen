@@ -205,12 +205,18 @@ a {
 .invert {
   filter: invert(15%);
 }
+.contrast {
+  filter: none;
+}
 @media (prefers-color-scheme: light) {
   .white {
     background: var(--background-400);
   }
   .invert {
     filter: invert(75%);
+  }
+  .contrast {
+    filter: invert(90%);
   }
 }
 

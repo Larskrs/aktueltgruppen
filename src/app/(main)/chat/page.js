@@ -189,7 +189,7 @@ export default function Home() {
             {isChatting &&
             <>
                 <ul className={styles.messageContainer}>
-                    {messages.filter((m) => m).map((msg, index) => {
+                    {messages.map((msg, index) => {
                         if (msg.type == "text") {
                             return (
                                 <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: msg.color } : {background: msg.color}}>
