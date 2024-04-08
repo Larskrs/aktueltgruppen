@@ -38,6 +38,7 @@
     justify-content: center;
     z-index: 100;
     background-color: var(--background-50);
+    border-bottom: 2px solid var(--background-100);
     width: 100vw;
     height: var(--nav-height);
     position: fixed;
@@ -59,12 +60,10 @@
     color: var(--text-900);
 }
 .active {
-    background: var(--accent-200);
     border-radius: 8px;
-    /* border: 2px solid var(--accent-300); */
     padding: 8px;
     /* color: var(--primary-500); */
-    color: var(--text-900);
+    color: var(--primary-600);
 }
 
 .widget {
@@ -87,9 +86,10 @@
 .footer {
     display: flex;
     flex-direction: column;
-    background-color: var(--background-75);
+    background-color: var(--background-50);
     padding: 16px;
     min-height: 300px;
+    border-top: 2px solid var(--background-100);
 }
 .footer .grid {
     display: grid;

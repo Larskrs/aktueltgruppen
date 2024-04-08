@@ -80,6 +80,23 @@ export default function Home() {
         return generateColor(hue, saturation, lightness, 0, 0);
     }
 
+    function getRandomColor () {
+        const colors = [
+            "red",
+            "blue",
+            "green",
+            "orange",
+            "purple",
+            "yellow",
+            "teal",
+            "pink",
+            "cyan",
+            "lime"
+        ]  
+
+        return colors[Math.floor(Math.random()*colors.length)];
+    }
+
     
 
     useEffect(() => {
@@ -181,7 +198,7 @@ export default function Home() {
                 <br />
 
                 <Input.NamedField disabled={isChatting} title='Brukernavn' submitButton='Sett Brukernavn' resetOnEnter={false} lockOnEnter={true} onEnter={(username) => {
-                   let color = generateRandomColor()
+                   let color = `var(--${getRandomColor()})`
                    connectToRoom(username, color);
                 }} />
             </div>
@@ -192,7 +209,7 @@ export default function Home() {
                     {messages.map((msg, index) => {
                         if (msg.type == "text") {
                             return (
-                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: msg.color } : {background: msg.color}}>
+                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: msg.color + "-300" } : {background: msg.color}}>
                                     <span className={styles.username} style={{color: msg.color}}>{msg.username}</span>
                                     <p>{msg.text.split(" ").map((word, i) => {
                                         if (isValidURL(word)) {
@@ -209,14 +226,14 @@ export default function Home() {
                             )
                         } else if (msg.type == "user_join") {
                             return (
-                                <div key={index} className={styles.server_message} style={{background: msg.color, outlineColor: msg.color}}>
+                                <div key={index} className={styles.server_message} style={{color: msg.color + "-500", outlineColor: msg.color}}>
                                     {msg.clientId == clientId ? "Du " : msg.username + " "}
                                      ble med i samtalen
                                 </div>
                             )
                         } else if (msg.type == "user_disconnect") {
                             return (
-                                <div key={index} className={styles.message} style={{background: "transparent", color: msg.color, marginInline: "auto"}}>
+                                <div key={index} className={styles.message} style={{background: "transparent", color: msg.color + "-500", marginInline: "auto"}}>
                                     {msg.username} forlot samtalen.
                                 </div>
                             )

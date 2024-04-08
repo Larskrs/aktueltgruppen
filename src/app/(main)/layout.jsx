@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const navLinks = [,
     { name: "Om oss", href: "/about"} ,
-    { name: "Filmer", href: "/films"} ,
+    { name: "Artikler", href: "/blog"} ,
     { name: "Chat", href: "/chat"} ,
 ]
 
@@ -79,7 +79,6 @@ export default function Layout({ children }) {
                 <div className={styles.grid}>
                     <section>
                         <h2>Kontakt Oss</h2>
-                        <p>Epost <span>info@aktuelt.tv</span></p>
                     </section>
                     <section>
                         <Image style={{objectFit: "contain"}} src={"/aktuelt.svg"} width={200} height={50}/>
