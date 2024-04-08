@@ -8,41 +8,89 @@
     width: 100%;
     padding: 2rem;
 }
-.blogs {
+
+.grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-auto-flow: row dense;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
+    gap: 32px;
 }
-@media only screen and (max-width: 1300px) {
-    .blogs {
-        grid-template-columns: 1fr 1fr;
+@media only screen and (min-width: 1300px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
-@media only screen and (max-width: 850px) {
-    .blogs {
+@media only screen and (max-width: 900px) {
+    .grid {
         grid-template-columns: 1fr;
     }
 }
 .blog {
-    border-radius: 4px;
-    background-color: var(--background-500);
+    background-color: var(--background-50);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
     margin: 0;
+    width: 100%;
+    max-width: 400px;
 }
 .blog img {
     width: 100%;
     object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+.blog .info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block: 16px;
+}
+.title {
+    color: var(--text-900);
+    font-size: 18px;
+}
+.description {
+    color: var(--text-300);
+}
+.date {
+    font-weight: 700;
+    color: var(--background-400);
+    margin: 0;
+}
+.header {
+    width: 100%;
+    display: flex;
+    padding: 16px 0px;
+}
+.header button {
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.header h3 {
+    font-size: 40px;
+    background: -webkit-linear-gradient(0deg, var(--secondary-600), var(--primary-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.blog button {
+    margin-top: 8px;
+    width: fit-content;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    font-weight: 700;
+    background-color: var(--primary-300);
 }
 .blog p {
     background-color: var(--background-50);
     height: fit-content;
     z-index: 99;
-    padding: 8px;
+    padding: 0px;
     margin: 0;
 }

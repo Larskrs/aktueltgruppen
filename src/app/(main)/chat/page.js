@@ -198,7 +198,7 @@ export default function Home() {
                 <br />
 
                 <Input.NamedField disabled={isChatting} title='Brukernavn' submitButton='Sett Brukernavn' resetOnEnter={false} lockOnEnter={true} onEnter={(username) => {
-                   let color = `var(--${getRandomColor()})`
+                   let color = `${getRandomColor()}`
                    connectToRoom(username, color);
                 }} />
             </div>
@@ -209,7 +209,7 @@ export default function Home() {
                     {messages.map((msg, index) => {
                         if (msg.type == "text") {
                             return (
-                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: msg.color + "-300" } : {background: msg.color}}>
+                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: `var(--${msg.color}-200)` } : {background: `var(--${msg.color}-500)`}}>
                                     <span className={styles.username} style={{color: msg.color}}>{msg.username}</span>
                                     <p>{msg.text.split(" ").map((word, i) => {
                                         if (isValidURL(word)) {
@@ -226,21 +226,21 @@ export default function Home() {
                             )
                         } else if (msg.type == "user_join") {
                             return (
-                                <div key={index} className={styles.server_message} style={{color: msg.color + "-500", outlineColor: msg.color}}>
+                                <div key={index} className={styles.server_message} style={{color: `var(--${msg.color}-500)`, outlineColor: `var(--${msg.color}-500)`, background: `transparent`}}>
                                     {msg.clientId == clientId ? "Du " : msg.username + " "}
                                      ble med i samtalen
                                 </div>
                             )
                         } else if (msg.type == "user_disconnect") {
                             return (
-                                <div key={index} className={styles.message} style={{background: "transparent", color: msg.color + "-500", marginInline: "auto"}}>
+                                <div key={index} className={styles.message} style={{background: "transparent", color: `var(--${msg.color}-300)`, marginInline: "auto"}}>
                                     {msg.username} forlot samtalen.
                                 </div>
                             )
                         } else if (msg.type == "image_attachment") {
                             return (
-                                <div key={index} className={styles.image_attachment} style={clientId === msg.clientId ? {marginLeft: "auto" } : {}}>
-                                    <span style={{color: msg.color}}>{msg.username}</span>
+                                <div key={index} className={styles.image_attachment} style={clientId === msg.clientId ? {marginLeft: "auto"} : {}}>
+                                    <span style={{color: `var(--${msg.color}-300)`}}>{msg.username}</span>
                                     <div>
                                         <MaxHeightImage maxHeight={300} src={msg.image} onLoad={() => {scrollToBottom()}}/>
                                     </div>

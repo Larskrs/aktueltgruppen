@@ -302,3 +302,9 @@ a {
   filter: none;
 }
 
+button, 
+textarea,
+input {
+    font-family: inherit;
+}
+
