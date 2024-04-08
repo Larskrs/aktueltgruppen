@@ -5,15 +5,6 @@ import { stat } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path";
 
-export const config = {
-  api: {
-    bodyParser: false,
-    responseLimit: '32mb',
-    externalResolver: true,
-  },
-};
-
-
 
 export async function POST (req, ctx) {
 
