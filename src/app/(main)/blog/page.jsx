@@ -5,11 +5,46 @@ import FadeImage from "../../../../components/common/FadeImage/FadeImage"
 export default function Blog ({}) {
 
     const blogs = [
-        "Dette er en blog ingen kommer til å lese",
-        "Hvor mange barn er i kjelleren til Lars? hehe, du er morsom. Men ikke spør det igjen.",
-        "Hei kæll, Hvor er beina dine?",
-        "Klokken er 01.17, HJELP"
-        
+        {
+            title: "The Muppets har funnet en ny stjerne.",
+            description: "Johanne engrav skal spille Beaker i den nye Muppets filmen: The Beaker : 2075",
+            img: "/images/debug/the-muppets-2.png",
+        },
+        {
+            title: "Daniel så noe helt genialt.",
+            description: "Daniel: Gerregud, det er jo så smart...",
+            img: "/images/debug/image.png",
+        },
+        {
+            title: "Denne oppskriften fikk Toffer med i demokratene.",
+            description: "Toffer endret meningene sine med en gang han fikk småge på disse.",
+            img: "/images/debug/bakt_potet.jpg"
+        },
+        {
+            title: "Aktuelt møter kritikk på skytebane.",
+            description: "Daniel mister sjangsen på jegerprøven etter uheldig sylting.",
+            img: "/images/debug/war_never_changes.png",
+        },
+        {
+            title: "Olav har aldri spist en så god frokostblanding før!",
+            description: "Daniel legger hasj og kokain i frokostblandingen til Olav. Timer senere hopper han ut av et fly til New York.",
+            img: "/images/debug/olav_faller.png",
+        }, 
+        {
+            title: "Kommer DBL til å bli lagd?",
+            description: "Daniel: Ja din stygge jøger, hold kjeft og dø, du vet ingenting.",
+            img: "/images/debug/trist_dan.jpg"
+        },
+        {
+            title: "Lars flyttet ut av fuktig gruve i Skien",
+            description: "I flere år nå har Lars Kristian bodd i parkeringsgruven i under arkaden parkering. Nå skal han endelig ut igjen.",
+            img: "/images/debug/oog_lars.png",
+        },
+        {
+            title: "Lucas er Batman",
+            description: "Endelig er drømmen i oppfyllelse, nå skal han spille batman i den nye generasjonens adopsjon.",
+            img: "/images/debug/luba_batman.png"
+        }
     ]
 
     return (
@@ -19,15 +54,16 @@ export default function Blog ({}) {
                         <h3>Artikler</h3>
                         <button>Vis mer</button>
                     </div>
+                <span className={styles.divider} />
                 <div className={styles.grid}>
                     {blogs.map((b, i) => {
                         return (
                                 <div key={i} className={styles.blog}>   
-                                    <FadeImage src={"/images/heddalKirkje.jpg"} width={400} height={200}/>
+                                    <FadeImage src={b.img} width={400} height={200}/>
                                     <div className={styles.info}>
                                         <p className={styles.date}>08.04.2024</p> 
-                                        <p className={styles.title}>{b}</p> 
-                                        <p className={styles.description}>Dette er min beskrivelse på artikler</p> 
+                                        <p className={styles.title}>{b.title}</p> 
+                                        <p className={styles.description}>{b.description}</p> 
                                         <button >Les mer</button>
                                     </div>
                                 </div>

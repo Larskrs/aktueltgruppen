@@ -15,6 +15,14 @@
     grid-auto-flow: row dense;
     gap: 32px;
 }
+.divider {
+    display: flex;
+    width: 100%;
+    height: 2px; /* adjust height as needed */
+    margin-bottom: 16px;
+    background: linear-gradient(to right,  rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0)); /* adjust colors and opacity */
+  }
+  
 @media only screen and (min-width: 1300px) {
     .grid {
         grid-template-columns: 1fr 1fr 1fr;
@@ -26,7 +34,6 @@
     }
 }
 .blog {
-    background-color: var(--background-50);
     display: flex;
     flex-direction: column;
     overflow: hidden;
