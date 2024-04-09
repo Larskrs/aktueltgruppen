@@ -1,0 +1,51 @@
+.blog {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    width: 100%;
+    max-width: 400px;
+}
+.blog img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    height: 200px;
+}
+.blog .info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block: 16px;
+}
+.title {
+    color: var(--text-900);
+    font-size: 18px;
+}
+.description {
+    color: var(--text-300);
+}
+.date {
+    font-weight: 700;
+    color: var(--background-400);
+    margin: 0;
+}
+.blog button {
+    margin-top: 8px;
+    width: fit-content;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    font-weight: 700;
+    background-color: var(--primary-300);
+}
+.blog p {
+    background-color: var(--background-50);
+    height: fit-content;
+    z-index: 99;
+    padding: 0px;
+    margin: 0;
+}

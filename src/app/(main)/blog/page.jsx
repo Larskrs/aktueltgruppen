@@ -1,8 +1,7 @@
 import Image from "next/image"
 import styles from "./page.module.css"
-import NamedButton from "../../../../components/input/NamedButton/NamedButton"
-import FadeImage from "../../../../components/common/FadeImage/FadeImage"
-export default function Blog ({}) {
+import Blog from "../../../../components/cards/Blog"
+export default function BlogPage ({}) {
 
     const blogs = [
         {
@@ -58,15 +57,7 @@ export default function Blog ({}) {
                 <div className={styles.grid}>
                     {blogs.map((b, i) => {
                         return (
-                                <div key={i} className={styles.blog}>   
-                                    <FadeImage src={b.img} width={400} height={200}/>
-                                    <div className={styles.info}>
-                                        <p className={styles.date}>08.04.2024</p> 
-                                        <p className={styles.title}>{b.title}</p> 
-                                        <p className={styles.description}>{b.description}</p> 
-                                        <button >Les mer</button>
-                                    </div>
-                                </div>
+                                <Blog key={i} {...b} />
                             )
                         })}
                 </div>
