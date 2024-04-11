@@ -3,7 +3,7 @@ import Image from "next/image"
 import styles from "./FadeImage.module.css"
 import { useState } from "react"
 
-const FadeImage = (props, {}) => {
+const FadeImage = (props) => {
 
     const [isLoaded, setIsLoaded] = useState(false)
 
