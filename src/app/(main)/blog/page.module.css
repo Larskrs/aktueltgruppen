@@ -103,6 +103,11 @@
     margin-bottom: 8px;
     height: 100%;
 }
+.hero .background video {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
 @media only screen and (max-width: 900px) {
     .hero {
         display: flex;

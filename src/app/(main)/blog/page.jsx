@@ -1,11 +1,31 @@
+"use client"
+
+
 import Image        from    "next/image"
 import styles       from    "./page.module.css"
 import Blog         from    "../../../../components/cards/Blog"
 import FadeImage    from    "../../../../components/common/FadeImage/FadeImage"
+import { useState } from "react"
+
 
 export default function BlogPage ({}) {
 
     const blogs = [
+        {
+            title: `Aktuelt's bidrag til Death Trip`,
+            conclusion:
+            `
+            Etter en lang dag med filming og mye planlegging som for det meste gikk rett i dass fikk vi denne videoen opp.
+
+            Ekstra takk til Olav-Andreas som ble med på å filme selv dette.
+            `,
+            description:
+            `
+            En vanskelig tid, med et artig resultat.
+            `,
+            img: "/images/debug/olav_faller.png",
+            video: "http://aktuelt.tv/api/files?fileId=death-trip-2024-low-res.mp4"
+        },
         {
             title: `Dårlig tid til DBL filming`,
             conclusion:
@@ -74,15 +94,20 @@ export default function BlogPage ({}) {
         // }
     ]
 
+    const [focusBlog, setFocusBlog] = useState(0)
+
     return (
         <div className={styles.container}>
             <div className={styles.hero} >
                 <div className={styles.background}>
-                    <FadeImage src={blogs[0]. img} width={1200} height={600} />
+                    {blogs[focusBlog].video
+                        ? <video src={blogs[focusBlog].video} autoPlay muted controls ></video>
+                        : <FadeImage src={blogs[focusBlog].img} width={1200} height={600} />
+                    }
                 </div>
                 <div className={styles.info}>
-                    <h1>{blogs[0].title}</h1>
-                    <p className={styles.conclusion}>{blogs[0].conclusion}</p>
+                    <h1>{blogs[focusBlog].title}</h1>
+                    <p className={styles.conclusion}>{blogs[focusBlog].conclusion}</p>
                 </div>
             </div>
             <div className={styles.blogs}>
@@ -94,7 +119,7 @@ export default function BlogPage ({}) {
                 <div className={styles.grid}>
                     {blogs.map((b, i) => {
                         return (
-                                <Blog key={i} {...b} />
+                                <Blog key={i} {...b} preview={focusBlog == i} onClick={() => {setFocusBlog(i)}} />
                             )
                         })}
                 </div>

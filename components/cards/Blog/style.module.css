@@ -1,7 +1,6 @@
 .blog {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     position: relative;
     margin: 0;
     width: 100%;
@@ -13,6 +12,36 @@
     border-radius: 12px;
     margin-bottom: 8px;
     height: 200px;
+}
+.image {
+    position: relative;
+    height: fit-content;
+}
+.preview {
+    background-color: var(--primary-300);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    scale: 1;
+    translate: -50% -50%;
+    width: 200px;
+    height: 200px;
+    animation: 3s 0s preview infinite linear;
+    border-radius: 50%;
+    filter: blur(20px);
+}
+@keyframes preview {
+    100% {
+        scale: 2;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    0% {
+        scale: 0;
+        opacity: 0;
+    }
 }
 .blog .info {
     display: flex;
@@ -43,7 +72,6 @@
     background-color: var(--primary-300);
 }
 .blog p {
-    background-color: var(--background-50);
     height: fit-content;
     z-index: 99;
     padding: 0px;
