@@ -101,7 +101,7 @@ export default function BlogPage ({}) {
             <div className={styles.hero} >
                 <div className={styles.background}>
                     {blogs[focusBlog].video
-                        ? <video src={blogs[focusBlog].video} autoPlay muted controls ></video>
+                        ? <video src={blogs[focusBlog].video} autoPlay playsInline muted controls ></video>
                         : <FadeImage src={blogs[focusBlog].img} width={1200} height={600} />
                     }
                 </div>
