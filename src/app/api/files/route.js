@@ -5,155 +5,70 @@ import { stat } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path";
 
-
-export async function POST (req, ctx) {
-
-  console.log(ctx)
+export async function POST(req, ctx) {
   const bb = busboy({ headers: req.headers });
-
   let fileName;
-  
+
   bb.on("file", (_, file, info) => {
-    // auth-api.mp4
     fileName = info.filename;
     const filePath = `./files/${fileName}`;
-
     const stream = fs.createWriteStream(filePath);
-
-
     file.pipe(stream);
   });
 
   bb.on("close", async () => {
-
-    return NextResponse.json({}, 200)
+    return NextResponse.json({}, 200);
   });
 
   req.pipe(bb);
 
-
-
-  return NextResponse.json({  });
+  return NextResponse.json({});
 }
 
+export async function GET(req, ctx) {
+  let fileName = req.nextUrl.searchParams.get("fileId").replace("/", "");
+  const [id, extension] = fileName.split(".");
+  let filePath = `./files/${fileName}`;
 
+  let res = new Response(null, {
+    headers: {
+      "Content-Type": "video/mp4",
+    },
+  });
 
-const CHUNK_SIZE_IN_BYTES = 1000000; // 1 mb
+  try {
+    const stats = await stat(filePath);
+    const fileSize = stats.size;
 
-export async function GET (req, ctx) {
+    const rangeHeader = req.headers.get("range");
 
-    let res = new Response()
-    let fileName = req.nextUrl.searchParams.get("fileId");
-    fileName = fileName.replace("/",'')
-    const [ id, extension ] = fileName.split(".")
+    if (rangeHeader) {
+      const parts = rangeHeader.replace(/bytes=/, "").split("-");
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+      const chunkSize = (end - start) + 1;
 
-    let filePath = `./files/${fileName}`;
-
-    let status = 200
-    const options = {};
-    
-    let start;
-    let end;
-    
-    const range = req.headers.range;
-    if (range) {
-        const bytesPrefix = "bytes=";
-        if (range.startsWith(bytesPrefix)) {
-            const bytesRange = range.substring(bytesPrefix.length);
-            const parts = bytesRange.split("-");
-            if (parts.length === 2) {
-                const rangeStart = parts[0] && parts[0].trim();
-                if (rangeStart && rangeStart.length > 0) {
-                    options.start = start = parseInt(rangeStart);
-                }
-                const rangeEnd = parts[1] && parts[1].trim();
-                if (rangeEnd && rangeEnd.length > 0) {
-                    options.end = end = parseInt(rangeEnd);
-                }
-            }
-        }
+      res = new Response(fs.createReadStream(filePath, { start, end }), {
+        status: 206,
+        headers: {
+          "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+          "Accept-Ranges": "bytes",
+          "Content-Length": chunkSize,
+          "Content-Type": "video/mp4",
+        },
+      });
+    } else {
+      res = new Response(fs.createReadStream(filePath), {
+        headers: {
+          "Content-Length": fileSize,
+          "Content-Type": "video/mp4",
+        },
+      });
     }
-    
-    // res.headers.append("content-type", "Image/jpeg")
-    //   res.setHeader("content-type", GetContentType(extension));
-    
-    let fileStat = null;
-    try {
-        fileStat = await stat(filePath)
-    } catch (err) {
-        return NextResponse.json({error: "File not found"});
-    }
-    
-    let contentLength = stat.size;
-    
-    
-    let retrievedLength;
-    if (start !== undefined && end !== undefined) {
-        retrievedLength = (end+1) - start;
-    }
-    else if (start !== undefined) {
-        retrievedLength = contentLength - start;
-    }
-    else if (end !== undefined) {
-        retrievedLength = (end+1);
-    }
-    else {
-        retrievedLength = contentLength;
-    }
-    
-    status = start !== undefined || end !== undefined ? 206 : 200;
 
-    res.headers.append("content-length", retrievedLength);
-    if (range !== undefined) {  
-              res.headers.append("content-range", `bytes ${start || 0}-${end || (contentLength-1)}/${contentLength}`);
-              res.headers.append("accept-ranges", "bytes");
-    }
-    res.headers.append("filename", fileName);
-    res.headers.append("content-disposition", "filename=" + fileName)
+  } catch (error) {
+    return NextResponse.json({ error: "File not found" });
+  }
 
-    const stream = streamFile(filePath)
-    const fileStream = fs.createReadStream(filePath, options);
-
-    fileStream.on("error", error => {
-        console.log(`Error streaming file ${filePath}.`);
-        console.log(error);
-        return NextResponse.json({  });
-    });
-
-    
-    return new NextResponse(stream);
-    
+  return new NextResponse(res);
 }
-    
-
-    async function* nodeStreamToIterator(stream) {
-        for await (const chunk of stream) {
-            yield new Uint8Array(chunk);
-        }
-    }
-    
-    function streamFile(path) {
-        const nodeStream = fs.createReadStream(path);
-        const iterator = nodeStreamToIterator(nodeStream);
-        return iteratorToStream(iterator);
-    }
-    
-    function iteratorToStream(iterator) {
-        return new ReadableStream({
-            async pull(controller) {
-                try {
-                    const { value, done } = await iterator.next();
-                    if (done) {
-                        controller.close();
-                    } else {
-                        controller.enqueue(value);
-                    }
-                } catch (error) {
-                    controller.error(error);
-                }
-            },
-            cancel() {
-                iterator.return();
-            }
-        })
-    }
