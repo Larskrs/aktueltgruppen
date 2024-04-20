@@ -5,7 +5,7 @@ import Image        from    "next/image"
 import styles       from    "./page.module.css"
 import Blog         from    "../../../../components/cards/Blog"
 import FadeImage    from    "../../../../components/common/FadeImage/FadeImage"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function BlogPage ({}) {
@@ -94,6 +94,18 @@ export default function BlogPage ({}) {
         // }
     ]
 
+    const companies = [
+        {
+            name: "Røde Kors Telemark",
+            logo: "/logo/companies/røde-kors-logo.png"
+        },
+        {
+            name: "Storm ballklubb",
+            logo: "/logo/companies/storm_ballklubb.png"
+        },
+        
+    ]
+
     const [focusBlog, setFocusBlog] = useState(0)
 
     return (
@@ -112,6 +124,25 @@ export default function BlogPage ({}) {
                     <p className={styles.conclusion}>{blogs[focusBlog].conclusion}</p>
                 </div>
             </div>
+            
+            <div className={styles.marquee}>
+                <div className={styles.marquee_content}>
+                        {companies.map((c, i) => {
+                            return (
+                                <FadeImage key={i} src={c.logo} width={200} height={50} />
+                            )
+                        })}
+                </div>
+                <div className={styles.marquee_content}>
+                        {companies.map((c, i) => {
+                            return (
+                                <FadeImage key={i} src={c.logo} width={200} height={50} />
+                            )
+                        })}
+                    
+                </div>
+            </div>
+
             <div className={styles.blogs}>
                     <div className={styles.header}>
                         <h3>Artikler</h3>
