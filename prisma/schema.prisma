@@ -28,8 +28,4 @@ model Projects {
     slug        String @unique
     title       String @default("New Title")
     description String @default("New Description")
-    clients     
-}
-model clients {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
 }
