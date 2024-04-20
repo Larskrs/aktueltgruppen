@@ -51,7 +51,7 @@
     font-weight: 700;
     font-size: 1.1em;
     display: flex;
-    color: var(--text-900);
+    color: var(--primary-900);
     padding: 8px;
     border-radius: 8px;
     border: 2px solid transparent;
@@ -74,7 +74,7 @@
     transition: 240ms cubic-bezier(.35,.17,.3,.86);
     color: var(--text-950);
     background-color: var(--background-100);
-    border: 2px solid var(--background-500);
+    border: 2px solid var(--primary-500);
     font-weight: 700;
     font-size: 1em;
     display: flex;

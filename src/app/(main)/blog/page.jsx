@@ -6,6 +6,7 @@ import styles       from    "./page.module.css"
 import Blog         from    "../../../../components/cards/Blog"
 import FadeImage    from    "../../../../components/common/FadeImage/FadeImage"
 import { useEffect, useState } from "react"
+import useFetch from "../../../hooks/useFetch"
 
 
 export default function BlogPage ({}) {
@@ -94,69 +95,13 @@ export default function BlogPage ({}) {
         // }
     ]
 
-    const companies = [
-        {
-            name: "Røde Kors Telemark",
-            logo: "/logo/companies/røde-kors-logo.png"
-        },
-        {
-            name: "Storm ballklubb",
-            logo: "/logo/companies/storm_ballklubb.png"
-        },
-        
-    ]
+    // const blogs = useFetch()
 
     const [focusBlog, setFocusBlog] = useState(0)
 
     return (
         <div className={styles.container}>
-            <div className={styles.hero} >
-                <div className={styles.background}>
-                    {blogs[focusBlog].video
-                        ?   <video  autoPlay playsInline muted controls>
-                                <source src={blogs[focusBlog].video} type="video/mp4"></source>
-                            </video>
-                        : <FadeImage src={blogs[focusBlog].img} width={1200} height={600} />
-                    }
-                </div>
-                <div className={styles.info}>
-                    <h1>{blogs[focusBlog].title}</h1>
-                    <p className={styles.conclusion}>{blogs[focusBlog].conclusion}</p>
-                </div>
-            </div>
             
-            <div className={styles.marquee}>
-                <div className={styles.marquee_content}>
-                        {companies.map((c, i) => {
-                            return (
-                                <FadeImage key={i} src={c.logo} width={200} height={50} />
-                            )
-                        })}
-                </div>
-                <div className={styles.marquee_content}>
-                        {companies.map((c, i) => {
-                            return (
-                                <FadeImage key={i} src={c.logo} width={200} height={50} />
-                            )
-                        })}
-                    
-                </div>
-            </div>
-
-            <div className={styles.blogs}>
-                    <div className={styles.header}>
-                        <h3>Artikler</h3>
-                        <button>Vis mer</button>
-                    </div>
-                <span className={styles.divider} />
-                <div className={styles.grid}>
-                    {blogs.map((b, i) => {
-                        return (
-                                <Blog key={i} {...b} preview={focusBlog == i} onClick={() => {setFocusBlog(i)}} />
-                            )
-                        })}
-                </div>
-            </div>
         </div>
     )
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./layout.module.css"
 import { usePathname } from "next/navigation";
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import Image from "next/image";
 
 const navLinks = [,
@@ -18,7 +18,6 @@ export default function Layout({ children }) {
     const [clients, setClients] = useState(0)
 
     useEffect(() => {
-        
         const url = `ws://${process.env.WebSocket.host}:${process.env.WebSocket.port}`;
         const socket = new WebSocket(url)
         socket.onopen = () => {
@@ -41,7 +40,6 @@ export default function Layout({ children }) {
                 socket.close();
             }
         };
-        
     }, [])
 
     const [state, setState] = useState("")
@@ -52,9 +50,9 @@ export default function Layout({ children }) {
             <nav className={styles.nav}>
 
                 <Link href={"/"} className={`${styles.logo} white`}>
-                    <Image src={"/aktuelt_icon.svg"} width={42} height={42} />
+                    <Image alt="Logo" src={"/aktuelt_icon.svg"} width={42} height={42} />
                 </Link>
-                
+
                 {navLinks.map((link) => {
                 const isActive = pathname.startsWith(link.href)
 
@@ -68,7 +66,7 @@ export default function Layout({ children }) {
                 })}
 
                 <div className={styles.widget}>Menu</div>
-            
+
             </nav>
 
             <main className={styles.main}>
@@ -81,7 +79,7 @@ export default function Layout({ children }) {
                         <h2>Kontakt Oss</h2>
                     </section>
                     <section>
-                        <Image style={{objectFit: "contain"}} src={"/aktuelt.svg"} width={200} height={50}/>
+                        <Image alt={"Aktuelt logo"} style={{objectFit: "contain"}} src={"/aktuelt.svg"} width={200} height={50}/>
                     </section>
                     <section>
                             <Link href={"/"}>Prosjekter</Link>

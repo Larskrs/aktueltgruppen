@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function NotFound () {
     return (
         <div className={styles.container}>
-            <Image src={"/icons/404-Symbol.svg"} className={`contrast ${styles.title}`} width={500} height={150} />
+            <Image alt="Not-found image" src={"/icons/404-Symbol.svg"} className={`contrast ${styles.title}`} width={500} height={150} />
             <p className={styles.description}>Vi fant desverre ikke noe aktuelt her...</p>
             <Link href={"/"} className={styles.button}>Hjem</Link>
         </div>

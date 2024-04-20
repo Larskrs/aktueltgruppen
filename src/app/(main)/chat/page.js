@@ -2,10 +2,10 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
 import styles from "./page.module.css";
-import { Input, Common } from '../../../../components';
+import { Input, Common } from '@/components'
 import NextImage from 'next/image';
 import { isValidURL } from "../../../../lib/url"
-import MaxHeightImage from '../../../../components/common/MaxHeightImage';
+import MaxHeightImage from '@/components/common/MaxHeightImage';
 import Link from 'next/link';
 
 export default function Home() {
@@ -146,6 +146,7 @@ export default function Home() {
             }
         };
         
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     const connectToRoom = (username, color) => {

@@ -1,0 +1,155 @@
+.field {
+    display: flex;
+    width: fit-content;
+    border-radius: 8px;
+    align-items: center;
+    overflow: hidden;
+}
+.title {
+    font-weight: 500;
+    font-size: 14px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.text {
+    font-size: 14px;
+}
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.button {
+    background-color: var(--background-300);
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.field {
+    border: none;
+    height: 100%;
+    width: fit-content;
+    min-width: 200px;
+    min-height: 36px;
+    padding: 8px;
+    outline: none;
+    background-color: var(--background-100);
+    border: 1px solid var(--background-200);
+    border-radius: 8px;
+    transition: all 200ms ease-in-out;
+    font-size: 16px;
+    position: relative;
+}
+.field:has(input:disabled) {
+    background-color: transparent;
+    border: 1px solid var(--background-100);
+    background-color: var(--background-50);
+    width: 0px;
+}
+.row:has(input:disabled) .button {
+    opacity: 0;
+    width: 0;
+    padding: 0;
+}
+.field:has(input:focus) {
+    padding: 1rem;
+    border: 1px solid transparent;
+    font-size: 20px;
+}
+.input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: red;
+    opacity: 0;
+    background-color: transparent;
+}
+.field div {
+    font-size: 20px;
+    display: flex;
+    max-height: 400px;
+    word-break: break-all;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.word {
+    opacity: 0;
+    pointer-events: none;
+    font-size: 14px;
+    animation: fade-in 500ms ease-in-out forwards;
+}
+.field:has(input:focus) .word {
+    font-size: 20px;
+}
+.field:has(input:focus) .indicator {
+    opacity: 1;
+}
+.indicator {
+    width: 32px;
+    position: relative;
+    display: flex;
+    gap: 8px;
+    translate: 8px 6px;
+    opacity: 0;
+}
+.indicator span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+}
+.indicator span:nth-child(1) {
+    animation: 1000ms linear float infinite;
+}
+.indicator span:nth-child(2) {
+    animation: 1000ms 100ms linear float infinite;
+}
+.indicator span:nth-child(3) {
+    animation: 1000ms 250ms linear float infinite;
+}
+@keyframes float {
+    0% {
+        translate: 0px 0px;
+    }
+    25% {
+        translate: 0px 4px;
+        background-color: var(--accent-500);
+    }
+    75% {
+        translate: 0px -4px;
+        background-color: var(--primary-500);
+    }
+    100% {
+        translate: 0px px;
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        scale: 1.2;
+    }
+    30% {
+        opacity: 0;
+        scale: 1.1;
+    }
+    60% {
+        scale: .9;
+    }
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}

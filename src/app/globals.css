@@ -1,35 +1,35 @@
 
   :root {
-    --text-50: rgb(19, 5, 20);
-    --text-100: rgb(39, 11, 40);
-    --text-200: rgb(78, 21, 81);
-    --text-300: rgb(116, 32, 121);
-    --text-400: rgb(155, 43, 161);
-    --text-500: rgb(194, 54, 201);
-    --text-600: rgb(206, 94, 212);
-    --text-700: rgb(218, 134, 223);
-    --text-800: rgb(231, 174, 234);
-    --text-900: rgb(243, 215, 244);
-    --text-950: rgb(249, 235, 250);
+    --text-50: #0b0910;
+    --text-100: #161221;
+    --text-200: #2d2541;
+    --text-300: #433762;
+    --text-400: #5a4983;
+    --text-500: #705ca3;
+    --text-600: #8d7cb6;
+    --text-700: #a99dc8;
+    --text-800: #c6beda;
+    --text-900: #e2deed;
+    --text-950: #f1eff6;
 
-    --background-50: rgb(20, 6, 20);
-    --background-100: rgb(39, 12, 39);
-    --background-200: rgb(78, 24, 78);
-    --background-300: rgb(117, 36, 117);
-    --background-400: rgb(156, 48, 156);
-    --background-500: rgb(195, 60, 195);
-    --background-600: rgb(207, 99, 207);
-    --background-700: rgb(219, 138, 219);
-    --background-800: rgb(231, 177, 231);
-    --background-900: rgb(243, 216, 243);
-    --background-950: rgb(249, 235, 249);
+    --background-50: #0c0a0f;
+    --background-100: #17141f;
+    --background-200: #2f293d;
+    --background-300: #463d5c;
+    --background-400: #5d527a;
+    --background-500: #746699;
+    --background-600: #9085ad;
+    --background-700: #aca3c2;
+    --background-800: #c8c2d6;
+    --background-900: #e3e0eb;
+    --background-950: #f1f0f5;
 
     --primary-50: rgb(22, 3, 22);
     --primary-100: rgb(44, 6, 45);
     --primary-200: rgb(88, 13, 89);
     --primary-300: rgb(132, 19, 134);
     --primary-400: rgb(176, 25, 179);
-    --primary-500: rgb(220, 32, 223);
+    --primary-500: #dc20df;
     --primary-600: rgb(227, 76, 230);
     --primary-700: rgb(234, 121, 236);
     --primary-800: rgb(241, 166, 242);
@@ -41,7 +41,7 @@
     --secondary-200: rgb(101, 1, 11);
     --secondary-300: rgb(151, 2, 17);
     --secondary-400: rgb(202, 2, 22);
-    --secondary-500: rgb(252, 3, 28);
+    --secondary-500: #fc031c;
     --secondary-600: rgb(253, 53, 73);
     --secondary-700: rgb(253, 104, 119);
     --secondary-800: rgb(254, 154, 164);
