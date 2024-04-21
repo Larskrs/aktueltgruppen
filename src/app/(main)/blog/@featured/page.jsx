@@ -7,7 +7,7 @@ import FadeImage from "@/components/common/FadeImage/FadeImage"
 
 export default function Featured () {
 
-    const {data, error, isLoading, refetch} = useFetch("http://localhost/api/articles")
+    const {data, error, isLoading, refetch} = useFetch("/api/articles", true )
     const [focus, setFocus] = useState(0)
 
     return (
