@@ -14,6 +14,10 @@ export default function Marquee () {
             name: "Storm ballklubb",
             logo: "/logo/companies/storm_ballklubb.png"
         },
+        {
+            name: "Norges Bryterforbund",
+            logo: "/logo/companies/norges_bryterforbund.png"
+        },
         
     ]
 
