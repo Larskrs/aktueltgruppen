@@ -1,6 +1,6 @@
 "use client"
 import styles from "./page.module.css"
-import { Input } from "../../../../components"
+import { Input } from "@/components"
 
 export default function Films () {
     return (
