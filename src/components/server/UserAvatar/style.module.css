@@ -1,0 +1,26 @@
+.user_icon {
+    display: flex;
+    height: inherit;
+    width: unset;
+    position: relative;
+    margin-left: auto;
+    height: 36px;
+    width:  36px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.sign_in {
+    display: flex;
+    height: inherit;
+    position: relative;
+    padding: 12px 8px;
+    align-items: center;
+}
+.sign_in button {
+    height: 36px;
+    border-radius: 6px;
+    padding: 8px 16px;
+    background: var(--background-100);
+    border: 1px solid var(--background-200);
+    cursor: pointer;
+}

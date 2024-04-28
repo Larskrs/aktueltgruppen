@@ -1,4 +1,4 @@
-const WebSocket = require('ws');
+const WebSocketServer = require('ws').Server;
 import { v1 } from 'uuid';
 
 let clients = 0; 
@@ -15,7 +15,9 @@ export function Broadcast (message) {
 }
 
 export function CreateServer () {
-    wss = new WebSocket.Server({ port: process.env.WebSocket.port });
+
+    wss = new WebSocketServer({port: process.env.WebSocket.port});
+  
 
     wss.on('connection', (ws) => {
         const clientId = v1();

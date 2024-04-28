@@ -3,10 +3,10 @@
 
 import Image        from    "next/image"
 import styles       from    "./page.module.css"
-import Blog         from    "../../../../components/cards/Blog"
-import FadeImage    from    "../../../../components/common/FadeImage/FadeImage"
+import Blog         from    "@/components/cards/Blog"
+import FadeImage    from    "@/components/common/FadeImage/FadeImage"
 import { useEffect, useState } from "react"
-import useFetch from "../../../hooks/useFetch"
+import useFetch from "@/hooks/useFetch"
 
 
 export default function BlogPage ({}) {

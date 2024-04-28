@@ -1,13 +1,11 @@
-"use client"
+"use server"
 import Blog from "@/components/cards/Blog"
-import useFetch from "@/hooks/useFetch"
-import { useEffect, useState } from "react"
 import styles from "./page.module.css"
 import FadeImage from "@/components/common/FadeImage/FadeImage"
 
-export default function Loading () {
+export default async function Loading () {
 
-    const blogs = [1,2,3]
+    const blogs = [1,2,3,4,5,6]
 
     return (
         <>
@@ -23,14 +21,13 @@ export default function Loading () {
 
             <div className={styles.blogs}>
                 <div className={styles.header}>
-                    <h3>Artikler</h3>
                     <button>Vis mer</button>
                 </div>
             <span className={styles.divider} />
             <div className={styles.grid}>
                 {blogs.map((a, i) => {
                     return (
-                        <Blog key={i} title={"Laster inn..."} preview={focus == i} onClick={() => {setFocus(i)}} />
+                        <Blog key={i} title={"Laster inn..."} />
                         )
                     })}
                 </div>

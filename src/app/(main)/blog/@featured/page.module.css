@@ -50,7 +50,10 @@
     height: 100%;
 }
 
-
+.blogs {
+    display: flex;
+    flex-direction: column;
+}
 
 .grid {
     display: grid;
@@ -111,6 +114,12 @@
     max-width: 1200px;
     font-size: 16px;
   }
+  @media only screen and (max-width: 600px) {
+      .grid {
+          grid-template-columns: 1fr;
+          max-width: 400px;
+      }
+  }
 @media only screen and (max-width: 900px) {
     .hero {
         display: flex;
@@ -122,10 +131,6 @@
     }
     .hero .background {
         height: 400px;
-    }
-    .grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
     }
     .hero {
         max-width: 600px;

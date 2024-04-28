@@ -23,12 +23,14 @@
     align-items: center;
 }
 .button {
-    background-color: var(--background-300);
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: var(--background-100);
+    border: 1px solid var(--background-200);
     cursor: pointer;
-    height: fit-content;
+}
+.button:hover {
+    background-color: var(--background-200);
 }
 
 .field {

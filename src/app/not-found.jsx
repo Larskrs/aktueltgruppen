@@ -1,6 +1,6 @@
 "use client"
 import styles from "./not-found.module.css"
-import { Common } from "../../components"
+import { Common } from "@/components"
 import Image from "next/image";
 import Link from "next/link";
 

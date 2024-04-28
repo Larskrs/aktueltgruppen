@@ -1,0 +1,27 @@
+.inactive, .active {
+    transition: 240ms cubic-bezier(.35,.17,.3,.86);
+    font-weight: 700;
+    font-size: 1.1em;
+    display: flex;
+    color: var(--primary-900);
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+.inactive:not(:hover) {
+    color: var(--text-900);
+}
+.active {
+    border-radius: 8px;
+    padding: 8px;
+    /* color: var(--primary-500); */
+    color: var(--primary-600);
+}
+@media only screen and (max-width: 700px) {
+    .inactive {
+        display: none;
+    }
+    .active {
+        border: none;
+    }
+}

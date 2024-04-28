@@ -107,14 +107,14 @@
 }
 .input button {
     font-weight: 900;
-    border: 2px solid transparent;
-    padding: 8px 16px;
-    border-radius: 8px;
-    background-color: var(--background-200);
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: var(--background-100);
+    border: 1px solid var(--background-200);
     cursor: pointer;
 }
 .input button:hover {
-    background-color: var(--background-500);
+    background-color: var(--background-200);
 }
 .server_message {
     display: flex;
