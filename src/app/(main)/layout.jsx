@@ -4,6 +4,7 @@ import styles from "./layout.module.css"
 import Image from "next/image"
 import NavLinks from "@/components/server/NavLinks"
 import UserAvatar from "@/components/server/UserAvatar"
+import SideBar from "@/components/server/SideBar"
 
 export default async function Layout({ children, navlinks }) {
 
@@ -12,9 +13,7 @@ export default async function Layout({ children, navlinks }) {
         <div className={styles.container}>
             <nav className={styles.nav}>
 
-                <Link href={"/"} className={`${styles.logo} white`}>
-                    <Image alt="Logo" src={"/aktuelt_icon.svg"} width={42} height={42} />
-                </Link>
+                <SideBar />
 
                 <NavLinks />
 
@@ -40,6 +39,7 @@ export default async function Layout({ children, navlinks }) {
                     </section>
                 </div>
             </footer>
+
         </div>
     );
 }

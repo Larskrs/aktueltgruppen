@@ -66,10 +66,10 @@ model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@unique([identifier, token])
 }
- 
+
 // Optional for WebAuthn support
 model Authenticator {
   id                   String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -81,7 +81,7 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -94,10 +94,14 @@ model Article {
   img         String @default("")
   video       String @default("")
   body        String @default("This is my new body")
+  groupId     String @db.ObjectId
+  slug        String @unique
+  group       Group @relation(fields: [groupId], references: [id])
 }
-model Projects {
-    id          String @id @default(auto()) @map("_id") @db.ObjectId
-    slug        String @unique
-    title       String @default("New Title")
-    description String @default("New Description")
+model Group {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String @unique
+  slug        String @unique
+  avatar      String @default("NO_AVATAR")
+  articles    Article[]
 }

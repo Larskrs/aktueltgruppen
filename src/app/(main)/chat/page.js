@@ -210,7 +210,7 @@ export default function Home() {
                     {messages.map((msg, index) => {
                         if (msg.type == "text") {
                             return (
-                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: `var(--${msg.color}-200)` } : {background: `var(--${msg.color}-500)`}}>
+                                <div key={index} className={styles.message} style={clientId === msg.clientId ? {marginLeft: "auto", background: `var(--${msg.color}-200)` } : {background: `var(--${msg.color}-300)`}}>
                                     <span className={styles.username} style={{color: msg.color}}>{msg.username}</span>
                                     <p>{msg.text.split(" ").map((word, i) => {
                                         if (isValidURL(word)) {

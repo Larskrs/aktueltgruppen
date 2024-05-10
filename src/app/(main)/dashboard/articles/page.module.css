@@ -1,0 +1,58 @@
+
+
+.articles table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.articles tr {
+    max-height: 130px;
+    overflow: hidden;
+}
+
+.articles th, .articles td {
+    text-align: left;
+    border-bottom: 1px solid var(--background-200);
+    text-align: left;
+    border-radius: 4px;
+    max-width: 400px;
+    padding: 6px;
+}
+.article {
+    display: flex;
+    gap: 8px;
+}
+.article a {
+    font-size: 12px;
+    font-weight: 900;
+}
+.article p {
+    font-size: 12px;
+}
+.articles td img {
+    border-radius: 6px;
+}
+.articles tr:nth-child(1n) {
+    border: 1px solid var(--background-100);
+}
+.articles tr:nth-child(2n) {
+    background-color: var(--background-100);
+}
+
+.articles th {
+    background-color: var(--background-100);
+    font-weight: bold;
+}
+
+.articles tbody tr:hover {
+    background-color: var(--background-100);
+}
+
+.articles a {
+    text-decoration: none;
+    color: #333;
+}
+
+.articles a:hover {
+    text-decoration: underline;
+}

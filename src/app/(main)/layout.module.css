@@ -74,3 +74,8 @@
         background-color: var(--background-50);
     }
 }
+@media only screen and (max-width: 700px) {
+    .nav {
+        background-color: var(--background-50);
+    }
+}

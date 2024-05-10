@@ -1,33 +1,32 @@
-"use server"
+"use client"
 import Blog from "@/components/cards/Blog"
 import styles from "./page.module.css"
 import FadeImage from "@/components/common/FadeImage/FadeImage"
+import useSWR from "swr"
+
+const fetcher = (...args) => fetch(...args).then((response) => response.json())
 
 
-async function getArticles() {
-    const res = await fetch(`http://localhost/api/articles`)
-    return res.json()
-  }
+export default function Featured () {
 
-export default async function Featured () {
+    const { data, error, isLoading } = useSWR('/api/articles', fetcher)
 
-    const articles = await getArticles()
-
-
+    if (error) return <div>Failed to load</div>
+    if (data)
     return (
         <>
             <div className={styles.hero} >
                 <div className={styles.background}>
-                    {articles[0]?.video
+                    {data[0]?.video
                         ?   <video  autoPlay playsInline muted controls>
-                                <source src={articles[0]?.video} type="video/mp4"></source>
+                                <source src={data[0]?.video} type="video/mp4"></source>
                             </video>
-                        : <FadeImage src={articles[0]?.img} width={1200} height={600} />
+                        : <FadeImage src={data[0]?.img} width={1200} height={600} />
                     }
                 </div>
                 <div className={styles.info}>
-                    <h1>{articles[0]?.title}</h1>
-                    <p className={styles.conclusion}>{articles[0]?.conclusion}</p>
+                    <h1>{data[0]?.title}</h1>
+                    <p className={styles.conclusion}>{data[0]?.conclusion}</p>
                 </div>
             </div>
 
@@ -38,9 +37,9 @@ export default async function Featured () {
                 </div>
                 <span className={styles.divider} />
                 <div className={styles.grid}>
-                    {articles.map((a, i) => {
+                    {data.map((a, i) => {
                         return (
-                            <Blog key={i} {...a} />
+                            <Blog key={a.id} {...a} />
                             )
                         })}
                 </div>
