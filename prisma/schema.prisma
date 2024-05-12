@@ -97,11 +97,14 @@ model Article {
   groupId     String @db.ObjectId
   slug        String @unique
   group       Group @relation(fields: [groupId], references: [id])
+  publishedAt DateTime? @default(now())
+  createdAt   DateTime? @default(now())
 }
 model Group {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   name        String @unique
   slug        String @unique
   avatar      String @default("NO_AVATAR")
+  createdAt   DateTime? @default(now())
   articles    Article[]
 }

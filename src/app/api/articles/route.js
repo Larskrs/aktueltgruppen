@@ -4,7 +4,17 @@ const prisma = new PrismaClient()
 
 export async function GET (req, ctx) {
 
-    const articles = await prisma.article.findMany()
+    const articles = await prisma.article.findMany({
+        where: {
+          publishedAt: {
+            // Use 'lt' (less than) operator to filter articles with publishedAt before the current time
+            lt: new Date(),
+          },
+        },
+        orderBy: {
+          publishedAt: 'desc', // Sort by publishedAt in descending order to show most recent articles first
+        },
+      });
     return NextResponse.json(articles)
 
 }
@@ -15,7 +25,22 @@ export async function POST (req, ctx) {
     console.log(data)
 
     const article = await prisma.article.create({
-        data: data
+        data: data,
+    })
+
+    return NextResponse.json(article)
+
+}
+
+export async function DELETE (req, ctx) {
+
+    const data = await req.json();
+    console.log(data)
+
+    const article = await prisma.article.delete({
+        where: {
+            id: data.id
+        }
     })
 
     return NextResponse.json(article)

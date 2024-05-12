@@ -37,7 +37,7 @@ export default function ArticlePage () {
                                             </div>
                                         </td>
                                         <td>{a.title}</td>
-                                        <td>{a.description}</td>                                        
+                                        <td>{a.description}</td>
                                     </tr>
                                 )
                             })}
