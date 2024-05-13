@@ -25,7 +25,7 @@ const nextConfig = {
     env: {
         WebSocket: {
             host: "localhost",
-            port: '3001',
+            port: '8100',
         }
     }
 };

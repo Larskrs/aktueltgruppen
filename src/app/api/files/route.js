@@ -4,6 +4,7 @@ import { stat } from "fs/promises";
 import { NextResponse } from "next/server";
 import { pipeline } from 'stream';
 import { promisify } from 'util';
+import mime from "mime-types"
 const pump = promisify(pipeline);
 
 export async function POST(req,res) {
@@ -30,6 +31,7 @@ export async function GET (req, ctx) {
     const [ id, extension ] = fileName.split(".")
 
     let filePath = `./files/${fileName}`;
+    const mimeType = mime.lookup(fileName)
 
     let status = 200
     const options = {};
@@ -119,14 +121,14 @@ export async function GET (req, ctx) {
           "Content-Range": `bytes ${start}-${end}/${fileSize}`,
           "Accept-Ranges": "bytes",
           "Content-Length": chunkSize,
-          "Content-Type": "video/mp4",
+          "Content-Type": mimeType,
         },
       });
     } else {
       return new Response(fs.createReadStream(filePath), {
         headers: {
           "Content-Length": fileSize,
-          "Content-Type": "video/mp4",
+          "Content-Type": mimeType,
         },
       });
     }
