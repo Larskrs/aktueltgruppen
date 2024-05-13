@@ -23,5 +23,6 @@
     }
     .active {
         border: none;
+        display: none;
     }
 }

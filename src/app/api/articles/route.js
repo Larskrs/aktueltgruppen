@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server'
-const prisma = new PrismaClient()
+import { db } from '@/lib/db'
 
 export async function GET (req, ctx) {
 
-    const articles = await prisma.article.findMany({
+    const articles = await db.article.findMany({
         where: {
           publishedAt: {
             // Use 'lt' (less than) operator to filter articles with publishedAt before the current time
@@ -24,7 +24,7 @@ export async function POST (req, ctx) {
     const data = await req.json();
     console.log(data)
 
-    const article = await prisma.article.create({
+    const article = await db.article.create({
         data: data,
     })
 
@@ -37,7 +37,7 @@ export async function DELETE (req, ctx) {
     const data = await req.json();
     console.log(data)
 
-    const article = await prisma.article.delete({
+    const article = await db.article.delete({
         where: {
             id: data.id
         }

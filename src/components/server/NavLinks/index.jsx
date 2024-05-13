@@ -4,7 +4,6 @@ import styles from "./page.module.css"
 import { usePathname } from "next/navigation";
 
 const navLinks = [,
-    { name: "Om oss", href: "/about"} ,
     { name: "Artikler", href: "/blog"} ,
     { name: "Chat", href: "/chat"} ,
 ]

@@ -1,6 +1,7 @@
 "use server"
 import { auth, signIn, signOut } from "@/auth"
 import styles from "./style.module.css"
+import Image from "next/image"
  
 export default async function UserAvatar() {
   const session = await auth()
@@ -19,7 +20,7 @@ export default async function UserAvatar() {
   return (
     <>
       <div className={styles.user_icon}>
-        <img src={session?.user?.image} alt="User Avatar" />
+        <Image fill src={session?.user?.image} alt="User Avatar" />
       </div>
 
       <form className={styles.sign_in}
