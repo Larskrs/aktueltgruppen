@@ -1,41 +1,23 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import busboy from "busboy";
 import fs from "fs";
 import { stat } from "fs/promises";
 import { NextResponse } from "next/server";
-import path from "path";
+import { pipeline } from 'stream';
+import { promisify } from 'util';
+const pump = promisify(pipeline);
 
-
-export async function POST (req, ctx) {
-
-  console.log(ctx)
-  const bb = busboy({ headers: req.headers });
-
-  let fileName;
-  
-  bb.on("file", (_, file, info) => {
-    // auth-api.mp4
-    fileName = info.filename;
-    const filePath = `./files/${fileName}`;
-
-    const stream = fs.createWriteStream(filePath);
-
-
-    file.pipe(stream);
-  });
-
-  bb.on("close", async () => {
-
-    return NextResponse.json({}, 200)
-  });
-
-  req.pipe(bb);
-
-
-
-  return NextResponse.json({  });
+export async function POST(req,res) {
+    try{
+        const formData = await req.formData();
+        const file = formData.getAll('files')[0]
+        const filePath = `./files/${file.name}`;
+        await pump(file.stream(), fs.createWriteStream(filePath));
+        return NextResponse.json({status:"success",data:file.size})
+    }
+    catch (e) {
+        return  NextResponse.json({status:"fail",data:e})
+    }
 }
-
 
 
 const CHUNK_SIZE_IN_BYTES = 1000000; // 1 mb

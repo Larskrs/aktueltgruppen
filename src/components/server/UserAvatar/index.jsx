@@ -19,7 +19,7 @@ export default async function UserAvatar() {
   return (
     <>
       <div className={styles.user_icon}>
-        <img src={session.user.image} alt="User Avatar" />
+        <img src={session?.user?.image} alt="User Avatar" />
       </div>
 
       <form className={styles.sign_in}
