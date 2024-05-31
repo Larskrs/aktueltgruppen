@@ -9,7 +9,7 @@
 .blog img {
     width: 100%;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 6px;
     margin-bottom: 8px;
     width: 400px;
     max-width: 100%;

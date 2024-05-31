@@ -57,14 +57,17 @@
     gap: 8px;
 }
 .widget .blob {
-    width: 16px;
+    width: 48px;
     position: relative;
     overflow: hidden;
-    height: 16px;
+    height: 32px;
     border-radius: 8px;
     background-color: var(--background-200);
     cursor: pointer;
     transition: all 600ms cubic-bezier(.35,.17,.3,.86);
+}
+.blob img {
+    border-radius: 0;
 }
 .widget .blob:hover {
     background-color: var(--background-300);
@@ -79,6 +82,9 @@
     background-color: var(--background-400);
     transition: all 300ms cubic-bezier(.35,.17,.3,.86);
     border-radius: 0px 8px 8px 0px;
+}
+.readMore {
+    font-weight: 600;
 }
 
 .blogs {

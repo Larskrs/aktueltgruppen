@@ -4,7 +4,7 @@ import styles from "./page.module.css"
 import { usePathname } from "next/navigation";
 
 const navLinks = [,
-    { name: "Artikler", href: "/blog"} ,
+    { name: "Artikler", href: "/articles"} ,
     { name: "Chat", href: "/chat"} ,
 ]
 
