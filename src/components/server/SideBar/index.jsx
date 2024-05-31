@@ -37,7 +37,7 @@ export default function SideBar ({isVisible = false}) {
     }
 
     const navLinks = [,
-        { name: "Artikler", href: "/blog"} ,
+        { name: "Artikler", href: "/articles"} ,
         { name: "Chat", href: "/chat"} ,
     ]
 
