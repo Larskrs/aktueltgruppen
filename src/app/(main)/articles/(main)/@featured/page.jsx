@@ -26,7 +26,7 @@ export default function Featured () {
                         ?   <video  autoPlay playsInline muted controls>
                                 <source src={data[current]?.video} type="video/mp4"></source>
                             </video>
-                        : <FadeImage src={data[current]?.img} fill />
+                        : <FadeImage src={data[current]?.img} fill sizes="800px" />
                     }
                     <div className={styles.widget}>
                         {data.map((a, i) => {

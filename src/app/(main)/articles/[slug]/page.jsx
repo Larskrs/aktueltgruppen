@@ -31,7 +31,7 @@ export default function Page({ params }) {
           <Link className={styles.back} href={"/articles"}>Tilbake</Link>
             <div className={styles.header}>
               <div className={styles.image}>
-                <FadeImage src={data.img} fill />
+                <FadeImage src={data.img} fill sizes="800px" />
               </div>
               <h1>{data.title}</h1>
               <p className={styles.conclusion}>{data.conclusion}</p>

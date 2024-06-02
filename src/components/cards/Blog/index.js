@@ -19,7 +19,7 @@ export default function Blog ({
                     <span style={{animationDelay: "0s", background: "var(--secondary-400)"}} className={styles.preview} />
                     <span style={{animationDelay: "1s", background: "var(--primary-400)"}} className={styles.preview} />
                 </div>
-                <FadeImage alt={title} src={img} width={400} height={200} />
+                <FadeImage alt={title} src={img} width={320} height={160} quality={50} />
             </div>
             <div className={styles.info}>
                 {/* <p className={styles.date}>08.04.2024</p>  */}
