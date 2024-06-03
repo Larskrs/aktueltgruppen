@@ -14,6 +14,11 @@ export async function GET (req, ctx) {
         orderBy: {
           publishedAt: 'desc', // Sort by publishedAt in descending order to show most recent articles first
         },
+        include: {
+          _count: {
+            select: { comments: true }
+          }
+        }
       });
     return NextResponse.json(articles)
 

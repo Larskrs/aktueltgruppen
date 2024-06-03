@@ -65,8 +65,14 @@
 }
 .date {
     font-weight: 700;
-    color: var(--background-800);
+    background-color: var(--text-950);
+    color: var(--background-100);
+    padding: 4px 6px !important;
+    border-radius: 8px;
     margin: 0;
+    position: absolute;
+    left: 8px;
+    top:  8px;
 }
 .blog button {
     margin-top: auto;
