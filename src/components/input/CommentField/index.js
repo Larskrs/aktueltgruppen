@@ -1,6 +1,7 @@
 "use client"
 import styles from "./style.module.css"
 import FadeImage from "@/components/common/LoadingFill"
+import Comment from "../../cards/Comment"
 import dynamic from 'next/dynamic';
 import NamedField from "../NamedField/NamedField";
 import axios from "axios";
@@ -12,8 +13,9 @@ export default function CommentField({
 }) {
 
     const [sent, setSent] = useState(false)
+    const [res, setRes] = useState(null)
 
-    if (sent) {
+    if (res) {
         return <></>
     }
 
@@ -30,12 +32,14 @@ export default function CommentField({
                         text: value
                     }
 
-                    await axios.post("http://localhost/api/articles/comments", data, {
+                    const _res = await axios.post("/api/articles/comments", data, {
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json;charset=UTF-8",
                         },
                     })
+                    console.log({_res})
+                    setRes(_res.data)
 
                     setSent(true)
 

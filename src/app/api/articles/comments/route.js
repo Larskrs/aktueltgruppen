@@ -15,6 +15,9 @@ export const POST = auth(async (req) => {
             articleId: data.articleId,
             userId: req.auth.user.id,
             text: data.text
+        },
+        include: {
+            user: true
         }
     })
 
