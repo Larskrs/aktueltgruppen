@@ -5,7 +5,7 @@ import FadeImage from "@/components/common/FadeImage/FadeImage"
 
 
 export async function generateMetadata(
-    { params, searchParams }) {
+    { params }) {
     // read route params
     const slug = params.slug
    
