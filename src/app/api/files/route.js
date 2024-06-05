@@ -15,27 +15,27 @@ export const POST = auth(async (req) => {
     try{
         const formData = await req.formData();
 
-        const groupId = formData.getAll('group')[0]
+        // const groupId = formData.getAll('group')[0]
 
-        const group = await db.group.findUnique({
-            where: {
-                id: groupId
-            }
-        })
+        // const group = await db.group.findUnique({
+        //     where: {
+        //         id: groupId
+        //     }
+        // })
 
-        const directoryPath = `./files/${groupId}`;;
+        // const directoryPath = `./files/${groupId}`;;
 
-        if (!fs.existsSync(directoryPath)) {
-            fs.mkdirSync(directoryPath);
-            console.log(`Directory '${directoryPath}' created.`);
-        } else {
-            console.log(`Directory '${directoryPath}' already exists.`);
-        }
+        // if (!fs.existsSync(directoryPath)) {
+        //     fs.mkdirSync(directoryPath);
+        //     console.log(`Directory '${directoryPath}' created.`);
+        // } else {
+        //     console.log(`Directory '${directoryPath}' already exists.`);
+        // }
 
 
 
         const file = formData.getAll('files')[0]
-        const filePath = `./files/${groupId}/${file.name}`;
+        const filePath = `./files/${file.name}`;
         await pump(file.stream(), fs.createWriteStream(filePath));
         return NextResponse.json({status:"success",data:file.size})
     }
