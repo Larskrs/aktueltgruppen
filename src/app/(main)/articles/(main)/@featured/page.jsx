@@ -41,10 +41,6 @@ export default function Featured () {
                 <div className={styles.info}>
                     <h1>{data[current]?.title}</h1>
                     <p className={styles.conclusion}>{data[current]?.conclusion}</p>
-<<<<<<< HEAD
-                    <p>Kommentarer: {data[current]._count.comments}</p>
-=======
->>>>>>> 3ab05701d03e4832c317dd286633fc3a9ece4fee
                     <Link className={styles.readMore} href={`/articles/${data[current].slug}`}>Les Mer</Link>
                 </div>
             </div>
