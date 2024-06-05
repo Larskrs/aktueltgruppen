@@ -8,6 +8,8 @@ import dynamic from 'next/dynamic'
 import CommentField from "@/components/input/CommentField"
 import Link from "next/link"
 
+
+
 const fetcher = (...args) => fetch(...args).then((response) => response.json())
 
 export default function Page({ params }) {
@@ -32,6 +34,10 @@ export default function Page({ params }) {
     </div>
     }
     return <div className={styles.container}>
+        <meta name="twitter:card" content="summary"/>
+
+
+
         <div className={styles.article}>
           <Link className={styles.back} href={"/articles"}>Tilbake</Link>
             <div className={styles.header}>

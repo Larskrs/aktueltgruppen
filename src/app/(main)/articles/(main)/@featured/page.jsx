@@ -29,7 +29,7 @@ export default function Featured () {
                         : <FadeImage src={data[current]?.img} fill sizes="800px" />
                     }
                     <div className={styles.widget}>
-                        {data.map((a, i) => {
+                        {data.slice(0,5).map((a, i) => {
                             return (
                                 <span style={current == i ? {width: 100, background: "var(--background-600)"} : {width: 48}} className={styles.blob} onClick={() => {setCurrent(i)}} key={a.id} >
                                     <FadeImage src={a.img} fill quality={10} sizes="100px" />
