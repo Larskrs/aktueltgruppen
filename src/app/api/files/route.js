@@ -10,6 +10,7 @@ import { db } from "@/lib/db"
 import { auth } from "@/auth";
 
 
+/*
 export const POST = auth(async (req) => {
 
     try{
@@ -44,6 +45,24 @@ export const POST = auth(async (req) => {
     }
     
 })
+*/
+
+export const POST = auth(async (req) => {
+
+    try{
+        const formData = await req.formData();
+
+        const file = formData.getAll('files')[0]
+        const filePath = `./files/${file.name}`;
+        await pump(file.stream(), fs.createWriteStream(filePath));
+        return NextResponse.json({status:"success",data:file.size})
+    }
+    catch (e) {
+        return  NextResponse.json({status:"fail",data:e})
+    }
+    
+})
+
 
 export async function GET (req, ctx) {
 
