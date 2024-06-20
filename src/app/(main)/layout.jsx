@@ -12,6 +12,7 @@ export default async function Layout({ children, navlinks }) {
     return (
         <div className={styles.container}>
             <nav className={styles.nav}>
+                <div>
 
                 <SideBar />
 
@@ -19,6 +20,7 @@ export default async function Layout({ children, navlinks }) {
 
                 <UserAvatar />
 
+                </div>
             </nav>
 
             <main className={styles.main}>

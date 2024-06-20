@@ -1,8 +1,141 @@
-.grid {
-    margin: 0 auto;
+.container {
     width: 100%;
-    height: 680px;
-    display: flex;
-    background-color: var(--background-100);
+    background-color: #eee;
     position: relative;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    max-height: 750px;
+    min-height: 750px;
+    /* grid-template-areas: 
+        "title title lts lts creator"
+        "title title clt clt creator"
+        "head head info info info"
+        "head head info info info"; */
+    position: relative;
+    color: black;
+    max-width: 1200px;
+}
+.grid > div {
+    padding: 8px;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.title h1 {
+    font-weight: 600;
+    font-size: 50px;
+    letter-spacing: 2px;
+}
+.title h1 span {
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+.title p .inset {
+    display: inline-block;
+    /* min-width: 30px; */
+    height: 100%;
+}
+.title p {
+    font-size: 18px;
+    display: flex;
+    width: 90%;
+}
+
+.action {
+    padding: 6px 16px;
+    background: var(--background-100);
+    border: none;
+    width: fit-content;
+    font-size: 18px;
+    border-radius: 4px;
+    color: #eee;
+}
+
+/* LTS */
+
+.lts section {
+    border-radius: 12px;
+    border: 2px solid var(--background-800);
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+    padding-left: 40px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.lts .action {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+/* Creator */
+
+.grid div {
+    position: relative;
+    display: flex;
+}
+.grid div section {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.info img {
+    filter: blur(20px);
+    scale: 1.1;
+}
+
+
+
+
+.title {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 5;
+}
+.lts {
+    grid-column-start: 6;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.creator {
+    grid-column-start: 10;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 5;
+}
+.clt {
+    grid-column-start: 6;
+    grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 5;
+}
+.head {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 5;
+    grid-row-end: 12;
+}
+.info {
+    grid-column-start: 6;
+    grid-column-end: 13;
+    grid-row-start: 5;
+    grid-row-end: 12;
 }

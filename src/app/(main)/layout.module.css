@@ -4,6 +4,7 @@
     flex-direction: column;
     max-width: 100vw;
     min-height: 100vh;
+    align-items: center;
 }
 .container img {
     object-fit: cover;
@@ -32,7 +33,6 @@
     padding-top: var(--nav-height);
 }
 .nav {
-    padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,8 +42,21 @@
     width: 100vw;
     height: var(--nav-height);
     position: fixed;
+    max-width: 1200px;
 }
-.nav > *:nth-child(2) {
+.nav > div {
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background-color: var(--background-50);
+    border-bottom: 2px solid var(--background-100);
+    width: 100vw;
+    height: var(--nav-height);
+    max-width: 1200px;
+}
+.nav > div > *:nth-child(2) {
     margin-left: auto;
 }
 

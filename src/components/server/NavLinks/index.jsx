@@ -4,6 +4,7 @@ import styles from "./page.module.css"
 import { usePathname } from "next/navigation";
 
 const navLinks = [,
+    { name: "About", href: "/"} ,
     { name: "Artikler", href: "/articles"} ,
     { name: "Chat", href: "/chat"} ,
 ]
@@ -16,7 +17,7 @@ export default function NavLinks({ children }) {
 
         <>
             {navLinks.map((link) => {
-                const isActive = pathname.startsWith(link.href)
+                const isActive = pathname.endsWith(link.href)
 
                 return (
                     <Link key={link.name} href={link.href}
