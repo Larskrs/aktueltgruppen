@@ -42,7 +42,6 @@
     width: 100vw;
     height: var(--nav-height);
     position: fixed;
-    max-width: 1200px;
 }
 .nav > div {
     padding: 1rem 1rem;

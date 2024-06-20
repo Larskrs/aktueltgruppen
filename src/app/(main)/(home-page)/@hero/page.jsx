@@ -24,12 +24,12 @@ export default function Hero () {
                     </div>
                     <div className={styles.clt}>
                         <section>
-                            <Image fill src={"http://aktuelt.tv/images/debug/olav_faller.png"} />
+                            <Image fill src={"http://aktuelt.tv/api/files?fileId=IMG_2909.jpg"} />
                         </section>
                     </div>
                     <div className={styles.head}>
                         <section>
-                            <Image fill src={"http://aktuelt.tv/api/files?fileId=trompet.jpg"} />
+                            <Image fill src={"http://aktuelt.tv/_next/image?url=http%3A%2F%2Faktuelt.tv%2Fapi%2Ffiles%3FfileId%3DLucas80srebrandLUCAS.jpg&w=828&q=75"} />
                         </section>
                     </div>
                     <div className={styles.info}>
