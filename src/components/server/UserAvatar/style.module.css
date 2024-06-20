@@ -1,13 +1,16 @@
+.container {
+    margin-left: auto;
+}
 .user_icon {
     display: flex;
     height: inherit;
     width: unset;
     position: relative;
-    margin-left: auto;
     height: 36px;
     width:  36px;
     border-radius: 50%;
     overflow: hidden;
+    margin-left: auto;
 }
 .sign_in {
     display: flex;

@@ -19,9 +19,11 @@ export default async function UserAvatar() {
  
   return (
     <>
+    
       <div className={styles.user_icon}>
         <Image fill src={session?.user?.image} alt="User Avatar" />
       </div>
+      
 
       <form className={styles.sign_in}
       action={async () => {

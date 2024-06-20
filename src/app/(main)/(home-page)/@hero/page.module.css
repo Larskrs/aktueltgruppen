@@ -34,7 +34,7 @@
 }
 .title h1 {
     font-weight: 600;
-    font-size: 50px;
+    font-size: 58px;
     letter-spacing: 2px;
 }
 .title h1 span {
@@ -60,7 +60,20 @@
     font-size: 18px;
     border-radius: 4px;
     color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms cubic-bezier(.35,.17,.3,.86);
+    cursor: pointer;
 }
+.action img {
+    transition: all 200ms cubic-bezier(.35,.17,.3,.86);
+}
+.action:hover img {
+    rotate: -4deg;
+    translate: -2px;
+}
+
 
 /* LTS */
 
@@ -69,7 +82,7 @@
     border: 2px solid var(--background-800);
     height: 100%;
     width: 100%;
-    padding: 12px;
+    padding: 18px;
     padding-left: 40px;
     font-size: 16px;
     display: flex;
@@ -99,8 +112,6 @@
     filter: blur(20px);
     scale: 1.1;
 }
-
-
 
 
 .title {

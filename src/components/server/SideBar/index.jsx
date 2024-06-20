@@ -45,7 +45,7 @@ export default function SideBar ({isVisible = false}) {
 
     return (
         <div className={styles.container}>
-            <Image onClick={() => {setVisible(!visible)}} alt="Logo" src={"/aktuelt_icon.svg"} width={42} height={42} />
+            <Image onClick={() => {setVisible(!visible)}} alt="Logo" src={"/aktuelt.svg"} width={105} height={42} />
 
 
             <div className={styles.modal} style={modalStyle()}>

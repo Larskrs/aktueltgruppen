@@ -5,11 +5,23 @@ import Image from "next/image"
 import NavLinks from "@/components/server/NavLinks"
 import UserAvatar from "@/components/server/UserAvatar"
 import SideBar from "@/components/server/SideBar"
+import AcceptTOS from "@/components/AcceptTOS"
+import TOSAcceptedWrapper from "@/components/TOSAcceptedWrapper"
 
 export default async function Layout({ children }) {
 
-
     return (
+        <>
+        <TOSAcceptedWrapper hideWhenAccepted={true}>
+                <nav className={styles.news}>
+                <p>Dette nettstedet er ikke ferdig utviklet! Om du fortsetter godtar du at vi samler inn epost, navn og profilbildet til din google konto om du logger inn under utviklingstid.</p>
+                <AcceptTOS>Godta</AcceptTOS>
+                </nav>
+        </TOSAcceptedWrapper>
+
+
+        
+        
         <div className={styles.container}>
             <nav className={styles.nav}>
                 <div>
@@ -22,6 +34,8 @@ export default async function Layout({ children }) {
 
                 </div>
             </nav>
+
+        
 
             <main className={styles.main}>
                 {children}
@@ -43,5 +57,6 @@ export default async function Layout({ children }) {
             </footer>
 
         </div>
+        </>
     );
 }

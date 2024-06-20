@@ -5,12 +5,14 @@ import {Common } from "@/components";
 
 export default function HomeLayout({
     marquee,
-    hero
+    hero,
+    projects
 }) {
   return (
     <main className={styles.main}>
         {hero}
         {marquee}
+        {projects}
     </main>
   );
 }

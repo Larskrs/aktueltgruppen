@@ -1,5 +1,6 @@
 import Image from "next/image"
 import styles from "./page.module.css"
+import Link from "next/link"
 
 export default function Hero () {
     return (
@@ -14,7 +15,9 @@ export default function Hero () {
                         <section>
                             <h2>Sommerpriser</h2>
                             <p>Service kostnadder er lavere i sommer og vi har kortere kø.</p>
-                            <button className={styles.action}></button>
+                            <Link href={"/"} className={styles.action}>
+                                <Image width={16} height={16} src={"/icons/Play.svg"} alt="Play"/>
+                            </Link>
                         </section>
                     </div>
                     <div className={styles.creator}>
@@ -34,7 +37,7 @@ export default function Hero () {
                     </div>
                     <div className={styles.info}>
                         <section>
-                            <Image fill src={"http://aktuelt.tv/_next/image?url=%2Fimages%2Fdebug%2Ftrist_dan.jpg&w=828&q=75"} />
+                            <Image fill src={"http://aktuelt.tv/api/files?fileId=IMG_2909.jpg"} />
                         </section>
                     </div>
                  </div>
