@@ -6,10 +6,35 @@ import { pipeline } from 'stream';
 import { promisify } from 'util';
 import mime from "mime-types"
 const pump = promisify(pipeline);
+import { db } from "@/lib/db"
+import { auth } from "@/auth";
 
-export async function POST(req,res) {
+
+/*
+export const POST = auth(async (req) => {
+
     try{
         const formData = await req.formData();
+
+        // const groupId = formData.getAll('group')[0]
+
+        // const group = await db.group.findUnique({
+        //     where: {
+        //         id: groupId
+        //     }
+        // })
+
+        // const directoryPath = `./files/${groupId}`;;
+
+        // if (!fs.existsSync(directoryPath)) {
+        //     fs.mkdirSync(directoryPath);
+        //     console.log(`Directory '${directoryPath}' created.`);
+        // } else {
+        //     console.log(`Directory '${directoryPath}' already exists.`);
+        // }
+
+
+
         const file = formData.getAll('files')[0]
         const filePath = `./files/${file.name}`;
         await pump(file.stream(), fs.createWriteStream(filePath));
@@ -18,10 +43,26 @@ export async function POST(req,res) {
     catch (e) {
         return  NextResponse.json({status:"fail",data:e})
     }
-}
+    
+})
+*/
 
+export const POST = auth(async (req) => {
 
-const CHUNK_SIZE_IN_BYTES = 1000000; // 1 mb
+    try{
+        const formData = await req.formData();
+
+        const file = formData.getAll('files')[0]
+        const filePath = `./files/${file.name}`;
+        await pump(file.stream(), fs.createWriteStream(filePath));
+        return NextResponse.json({status:"success",data:file.size})
+    }
+    catch (e) {
+        return  NextResponse.json({status:"fail",data:e})
+    }
+    
+})
+
 
 export async function GET (req, ctx) {
 

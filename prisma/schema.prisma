@@ -28,10 +28,11 @@ model User {
   // Optional for WebAuthn support
   Authenticator Authenticator[]
  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  role UserRole @default(USER)
+  role          UserRole @default(USER)
+  comments      Comment[]
 }
  
 model Account {
@@ -103,8 +104,18 @@ model Article {
   groupId     String @db.ObjectId
   slug        String @unique
   group       Group @relation(fields: [groupId], references: [id])
+  comments    Comment[]
   publishedAt DateTime? @default(now())
   createdAt   DateTime? @default(now())
+}
+model Comment {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  text        String @default("New Description")
+  createdAt   DateTime? @default(now())
+  articleId   String  @db.ObjectId
+  article     Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  userId      String  @db.ObjectId
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 model Group {
   id          String @id @default(auto()) @map("_id") @db.ObjectId

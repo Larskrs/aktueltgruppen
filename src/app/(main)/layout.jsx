@@ -6,7 +6,7 @@ import NavLinks from "@/components/server/NavLinks"
 import UserAvatar from "@/components/server/UserAvatar"
 import SideBar from "@/components/server/SideBar"
 
-export default async function Layout({ children, navlinks }) {
+export default async function Layout({ children }) {
 
 
     return (

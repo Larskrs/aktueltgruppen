@@ -13,7 +13,7 @@ export async function GET (req, ctx) {
         },
         orderBy: {
           publishedAt: 'desc', // Sort by publishedAt in descending order to show most recent articles first
-        },
+        }
       });
     return NextResponse.json(articles)
 

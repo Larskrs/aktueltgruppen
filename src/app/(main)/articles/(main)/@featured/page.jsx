@@ -26,10 +26,10 @@ export default function Featured () {
                         ?   <video  autoPlay playsInline muted controls>
                                 <source src={data[current]?.video} type="video/mp4"></source>
                             </video>
-                        : <FadeImage src={data[current]?.img} fill />
+                        : <FadeImage src={data[current]?.img} fill sizes="800px" />
                     }
                     <div className={styles.widget}>
-                        {data.map((a, i) => {
+                        {data.slice(0,5).map((a, i) => {
                             return (
                                 <span style={current == i ? {width: 100, background: "var(--background-600)"} : {width: 48}} className={styles.blob} onClick={() => {setCurrent(i)}} key={a.id} >
                                     <FadeImage src={a.img} fill quality={10} sizes="100px" />
@@ -52,7 +52,7 @@ export default function Featured () {
                 </div>
                 <span className={styles.divider} />
                 <div className={styles.grid}>
-                    {data.map((a, i) => {
+                    {data && data.map((a, i) => {
                         return (
                             <Blog key={a.id} {...a} />
                             )

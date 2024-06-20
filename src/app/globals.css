@@ -1,16 +1,16 @@
 
   :root {
     --text-50: hwb(257 4% 94%);
-    --text-100: #161221;
-    --text-200: #2d2541;
-    --text-300: #433762;
-    --text-400: #5a4983;
-    --text-500: #705ca3;
-    --text-600: #8d7cb6;
-    --text-700: #a99dc8;
-    --text-800: #c6beda;
-    --text-900: #e2deed;
-    --text-950: #f1eff6;
+    --text-100: #1f1f1f;
+    --text-200: rgb(67, 67, 67);
+    --text-300: rgb(100, 100, 100);
+    --text-400: #7d7d7d;
+    --text-500: #a6a6a6;
+    --text-600: #bebebe;
+    --text-700: #cacaca;
+    --text-800: #deddde;
+    --text-900: #f0f0f0;
+    --text-950: #ffffff;
 
     --background-50: #0c0a0f;
     --background-100: #17141f;
