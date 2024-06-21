@@ -1,0 +1,37 @@
+.news {
+    position: fixed;
+    width: 100vw;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    z-index: 99;
+    font-size: 16px;
+    text-align: center;
+    padding: 8px;
+    color: black;
+    background-color: rgba(204, 246, 123, .75);
+    opacity: 1;
+    backdrop-filter: blur(50px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    pointer-events:fill;
+    gap: 16px;
+    transition: all 200ms cubic-bezier(.35,.17,.3,.86);
+}
+.news p {
+    max-width: 800px;
+}
+.button {
+    font-size: 16px;
+    display: inline;
+    border: none;
+    padding: 5px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--background-50);
+}
+.button:hover {
+    background-color: var(--background-200);
+}

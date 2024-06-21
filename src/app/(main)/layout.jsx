@@ -7,6 +7,7 @@ import UserAvatar from "@/components/server/UserAvatar"
 import SideBar from "@/components/server/SideBar"
 import AcceptTOS from "@/components/AcceptTOS"
 import TOSAcceptedWrapper from "@/components/TOSAcceptedWrapper"
+import OverheadNews from "@/components/cards/OverheadNews"
 
 export default async function Layout({ children }) {
 
@@ -23,6 +24,9 @@ export default async function Layout({ children }) {
         
         
         <div className={styles.container}>
+            <OverheadNews newsId={"3"}>
+                Advarsel! Artikler på nettsiden er ikke ekte.
+            </OverheadNews>
             <nav className={styles.nav}>
                 <div>
 
